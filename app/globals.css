@@ -44,6 +44,19 @@ html {
 *:focus-visible {
   outline: 2px solid #667eea;
   outline-offset: 2px;
+  transition: outline-offset 0.2s ease;
+}
+
+*:focus-visible:not(button) {
+  outline-offset: 4px;
+}
+
+/* Enhanced focus states for interactive elements */
+.cta-primary:focus-visible,
+.cta-secondary:focus-visible {
+  outline: 3px solid #ffd89b;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(255, 216, 155, 0.2);
 }
 
 /* High contrast mode support */
