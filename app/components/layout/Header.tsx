@@ -39,9 +39,21 @@ const Header = ({ className = "" }: HeaderProps) => {
       }
     };
 
+    const handleResize = () => {
+      // Close mobile menu on resize to desktop
+      if (window.innerWidth > 768 && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isMobileMenuOpen]);
 
   useEffect(() => {
     // Close menu when clicking outside
