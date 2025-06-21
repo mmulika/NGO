@@ -17,15 +17,8 @@ const Header = ({ className = "" }: HeaderProps) => {
       setIsScrolled(window.scrollY > 20);
 
       // Update active section based on scroll position
-      const sections = [
-        "hero",
-        "about",
-        "our-work",
-        "projects",
-        "get-involved",
-        "contact",
-      ];
-      const currentSection = sections.find((id) => {
+      const sections = ["hero", "about", "our-work", "projects", "get-involved", "contact"];
+      const currentSection = sections.find(id => {
         const element = document.getElementById(id);
         if (element) {
           const rect = element.getBoundingClientRect();
@@ -82,7 +75,7 @@ const Header = ({ className = "" }: HeaderProps) => {
 
       window.scrollTo({
         top: elementPosition,
-        behavior: "smooth",
+        behavior: "smooth"
       });
 
       // Close mobile menu after navigation
@@ -99,15 +92,19 @@ const Header = ({ className = "" }: HeaderProps) => {
     { id: "our-work", label: "Our Work" },
     { id: "projects", label: "Projects" },
     { id: "get-involved", label: "Get Involved" },
-    { id: "contact", label: "Contact" },
+    { id: "contact", label: "Contact" }
   ];
 
   return (
-    <nav
-      className={`navigation-header ${isScrolled ? "scrolled" : ""} ${className}`}
-      role="navigation"
-      aria-label="Main navigation"
-    >
+    <>
+      <a href="#main-content" className="skip-to-content">
+        Skip to main content
+      </a>
+      <nav
+        className={`navigation-header ${isScrolled ? "scrolled" : ""} ${className}`}
+        role="navigation"
+        aria-label="Main navigation"
+      >
       <div className="nav-container">
         <div className="logo-section">
           <button
@@ -153,15 +150,9 @@ const Header = ({ className = "" }: HeaderProps) => {
           aria-expanded={isMobileMenuOpen}
           aria-controls="mobile-menu"
         >
-          <span
-            className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}
-          ></span>
-          <span
-            className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}
-          ></span>
-          <span
-            className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}
-          ></span>
+          <span className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}></span>
+          <span className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}></span>
+          <span className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}></span>
         </button>
 
         {/* Mobile Navigation Menu */}
