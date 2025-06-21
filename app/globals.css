@@ -262,7 +262,12 @@ h6 {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   transition: left 0.5s ease;
 }
 
@@ -1901,31 +1906,6 @@ img {
   .mobile-nav-overlay {
     right: 280px;
   }
-}
-
-@media (max-width: 480px) {
-  .mobile-nav-content {
-    width: 100%;
-  }
-
-  .mobile-nav-overlay {
-    display: none;
-  }
-
-  .nav-container {
-    padding: 0 16px;
-  }
-
-  .logo-text {
-    font-size: 18px;
-  }
-
-  .logo-circle {
-    width: 36px;
-    height: 36px;
-    font-size: 16px;
-  }
-}
 
   .hero-title {
     font-size: 2.5rem;
@@ -2007,6 +1987,30 @@ img {
 
   .hero-image {
     object-position: center 30%; /* Focus on upper portion for better mobile viewing */
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-nav-content {
+    width: 100%;
+  }
+
+  .mobile-nav-overlay {
+    display: none;
+  }
+
+  .nav-container {
+    padding: 0 16px;
+  }
+
+  .logo-text {
+    font-size: 18px;
+  }
+
+  .logo-circle {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
   }
 }
 
