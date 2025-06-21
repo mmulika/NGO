@@ -144,6 +144,96 @@ export default function Home() {
               </div>
             </div>
           </div>
+
+          <div className="image-grid">
+            <div className="image-card">
+              <img
+                src="https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/whatsapp-image-2025-06-16-at-21.56.37-797bc2?format=webp&width=800"
+                alt="TEEM Foundation leaders and community members at an outreach event"
+                className="program-image"
+              />
+              <div className="image-overlay">
+                <div className="image-caption">Community Leadership</div>
+                <div className="image-description">
+                  Working with local leaders to create lasting change
+                </div>
+              </div>
+            </div>
+            <div className="image-card">
+              <img
+                src="https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/whatsapp-image-2025-06-16-at-21.56.36-399dcb?format=webp&width=800"
+                alt="Sanitary towel distribution ceremony with young girls receiving essential hygiene supplies"
+                className="program-image"
+              />
+              <div className="image-overlay">
+                <div className="image-caption">Essential Support</div>
+                <div className="image-description">
+                  Providing sanitary towels and hygiene education
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery Section */}
+      <section className="gallery-section">
+        <div className="container">
+          <div className="section-intro">
+            <h2 className="section-title">Our Impact in Action</h2>
+            <p className="section-subtitle">
+              See how we're making a real difference in communities across Kenya
+              through our programs and initiatives.
+            </p>
+          </div>
+
+          <div className="gallery-grid">
+            <div className="gallery-item">
+              <img
+                src="https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/whatsapp-image-2025-06-16-at-21.56.37-1-4d7fb5?format=webp&width=800"
+                alt="Sanitary towel distribution event with community participation and support"
+                className="gallery-image"
+              />
+              <div className="gallery-content">
+                <h3 className="gallery-title">Hygiene Support Program</h3>
+                <p className="gallery-description">
+                  Distributing sanitary towels and hygiene supplies to ensure
+                  girls can attend school without interruption during their
+                  menstrual cycles.
+                </p>
+              </div>
+            </div>
+
+            <div className="gallery-item">
+              <img
+                src="https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/whatsapp-image-2025-06-16-at-22.05.31-8fb7db?format=webp&width=800"
+                alt="Outdoor community training session with participants engaged in learning"
+                className="gallery-image"
+              />
+              <div className="gallery-content">
+                <h3 className="gallery-title">Community Training Sessions</h3>
+                <p className="gallery-description">
+                  Conducting life skills workshops in natural settings that
+                  encourage open dialogue and peer-to-peer learning.
+                </p>
+              </div>
+            </div>
+
+            <div className="gallery-item">
+              <img
+                src="https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/whatsapp-image-2025-06-16-at-22.27.54-9bc476?format=webp&width=800"
+                alt="Large group photo of TEEM Foundation program participants and facilitators"
+                className="gallery-image"
+              />
+              <div className="gallery-content">
+                <h3 className="gallery-title">Growing Community</h3>
+                <p className="gallery-description">
+                  Our programs bring together diverse groups of young people,
+                  creating supportive networks that extend beyond our sessions.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
