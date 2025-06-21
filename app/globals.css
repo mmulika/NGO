@@ -1682,4 +1682,15 @@ img {
   .gallery-image {
     height: 200px;
   }
+
+  /* Optimize hero images for mobile */
+  .hero-image {
+    animation: none; /* Disable zoom animation on mobile for performance */
+    transform: scale(1);
+  }
+
+  .hero-section {
+    margin-top: 70px; /* Adjust for mobile header */
+    min-height: 85vh; /* Slightly reduce height on mobile */
+  }
 }
