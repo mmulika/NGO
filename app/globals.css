@@ -1125,4 +1125,21 @@ section {
   .quote-text {
     font-size: 1.25rem;
   }
+
+  .image-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-image {
+    height: 300px;
+  }
+
+  .gallery-image {
+    height: 200px;
+  }
 }
