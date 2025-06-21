@@ -549,6 +549,29 @@ h6 {
   background: rgba(255, 255, 255, 0.9);
   border-color: rgba(255, 255, 255, 1);
   transform: scale(1.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-ring {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid transparent;
+  border-top-color: rgba(255, 216, 155, 0.8);
+  border-radius: 50%;
+  animation: spin 6s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .scroll-indicator {
