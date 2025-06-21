@@ -204,6 +204,7 @@ const HeroSection = () => {
               key={index}
               className={`image-nav-dot ${index === currentImageIndex ? "active" : ""}`}
               onClick={() => setCurrentImageIndex(index)}
+              onKeyDown={(e) => handleKeyDown(e, index)}
               aria-label={`Show background image ${index + 1}`}
             >
               {index === currentImageIndex && !isPaused && (
