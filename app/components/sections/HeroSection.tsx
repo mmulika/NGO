@@ -32,20 +32,36 @@ const HeroSection = () => {
 
   const backgroundImages = [
     {
-      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/whatsapp-image-2025-06-16-at-22.27.54-9bc476?format=webp&width=1200",
-      alt: "Large group photo of TEEM Foundation program participants and community members",
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1261-3d4766?format=webp&width=1200",
+      alt: "TEEM Foundation representatives in traditional African attire at cultural celebration with international flags",
     },
     {
-      src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1200&auto=format&fit=crop",
-      alt: "Students engaged in collaborative learning activities",
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1282-11d069?format=webp&width=1200",
+      alt: "TEEM Foundation team members and participants at Africa Day celebration showcasing cultural diversity",
     },
     {
-      src: "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?q=80&w=1200&auto=format&fit=crop",
-      alt: "Young people participating in community development workshop",
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1284-69ee3d?format=webp&width=1200",
+      alt: "Community engagement and cultural exchange at TEEM Foundation event with participants in traditional dress",
     },
     {
-      src: "https://images.unsplash.com/photo-1522661067900-ab829854a57f?q=80&w=1200&auto=format&fit=crop",
-      alt: "Youth empowerment and education program in action",
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1343-fff635?format=webp&width=1200",
+      alt: "TEEM Foundation cultural celebration with participants wearing beautiful traditional African clothing",
+    },
+    {
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1349-83974a?format=webp&width=1200",
+      alt: "TEEM Foundation representatives engaging with community members at cultural event",
+    },
+    {
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1353-473061?format=webp&width=1200",
+      alt: "TEEM Foundation Africa Day celebration with traditional dress and cultural displays",
+    },
+    {
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1438-924edc?format=webp&width=1200",
+      alt: "TEEM Foundation community outreach and cultural sharing at special event",
+    },
+    {
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1441-40b9ac?format=webp&width=1200",
+      alt: "TEEM Foundation cultural exchange program with participants in traditional African attire",
     },
   ];
 
