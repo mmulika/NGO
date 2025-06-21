@@ -1624,6 +1624,16 @@ img {
     gap: 16px;
     text-align: center;
   }
+
+  /* Optimize hero section for tablet/mobile */
+  .hero-section {
+    aspect-ratio: 4/3;
+    min-height: 80vh;
+  }
+
+  .hero-image {
+    object-position: center 30%; /* Focus on upper portion for better mobile viewing */
+  }
 }
 
 @media (max-width: 640px) {
