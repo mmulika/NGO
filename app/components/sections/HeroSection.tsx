@@ -73,17 +73,24 @@ const HeroSection = () => {
         />
         <div className="hero-overlay" aria-hidden="true"></div>
         <div className="hero-particles" aria-hidden="true">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div
-              key={i}
-              className="particle"
-              style={{
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 2}s`,
-                animationDuration: `${3 + Math.random() * 2}s`,
-              }}
-            />
-          ))}
+          {Array.from({ length: 6 }).map((_, i) => {
+            // Generate deterministic values based on index to avoid hydration mismatch
+            const leftPosition = i * 16.7 + ((i * 13) % 100);
+            const delay = (i * 0.33) % 2;
+            const duration = 3 + ((i * 0.4) % 2);
+
+            return (
+              <div
+                key={i}
+                className="particle"
+                style={{
+                  left: `${leftPosition}%`,
+                  animationDelay: `${delay}s`,
+                  animationDuration: `${duration}s`,
+                }}
+              />
+            );
+          })}
         </div>
         <div className={`hero-container ${isLoaded ? "loaded" : ""}`}>
           <div className="hero-content">
