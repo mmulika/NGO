@@ -198,7 +198,11 @@ const HeroSection = () => {
               className={`image-nav-dot ${index === currentImageIndex ? "active" : ""}`}
               onClick={() => setCurrentImageIndex(index)}
               aria-label={`Show background image ${index + 1}`}
-            />
+            >
+              {index === currentImageIndex && !isPaused && (
+                <div className="progress-ring" />
+              )}
+            </button>
           ))}
         </div>
 
