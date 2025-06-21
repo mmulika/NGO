@@ -19,6 +19,25 @@ html {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  .hero-container {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .title-animated,
+  .hero-highlight,
+  .hero-description,
+  .hero-actions,
+  .hero-stats {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .particle {
+    display: none !important;
+  }
 }
 
 /* Focus styles for accessibility */
