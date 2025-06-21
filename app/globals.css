@@ -220,7 +220,11 @@ h6 {
   z-index: 0;
 }
 
-.hero-image.active {
+.hero-image.loaded {
+  transition: opacity 1.5s ease-in-out;
+}
+
+.hero-image.active.loaded {
   opacity: 1;
   z-index: 1;
 }
