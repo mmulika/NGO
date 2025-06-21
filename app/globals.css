@@ -1344,6 +1344,8 @@ section {
 /* Image performance optimizations */
 img {
   content-visibility: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 .hero-image,
@@ -1351,6 +1353,37 @@ img {
 .gallery-image,
 .program-image {
   will-change: transform;
+}
+
+/* Enhanced hero image optimizations */
+.hero-image-wrapper {
+  contain: layout style paint;
+  transform: translateZ(0); /* Force hardware acceleration */
+}
+
+.hero-image {
+  backface-visibility: hidden;
+  perspective: 1000px;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Preload optimization for critical images */
+.hero-image[data-priority="true"] {
+  content-visibility: visible;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .hero-image {
+    animation: none !important;
+    transform: scale(1) !important;
+    transition: opacity 0.3s ease !important;
+  }
+
+  .hero-image-wrapper {
+    transition: opacity 0.3s ease !important;
+  }
 }
 
 /* Optimize transforms for better performance */
