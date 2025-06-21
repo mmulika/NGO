@@ -112,12 +112,12 @@ const HeroSection = () => {
             key={index}
             src={image.src}
             alt={image.alt}
-            className={`hero-image ${index === currentImageIndex ? "active" : ""}`}
+            className={`hero-image ${index === currentImageIndex ? "active" : ""} ${loadedImages.has(index) ? "loaded" : ""}`}
             fill
             priority={index === 0}
             sizes="100vw"
             style={{ objectFit: "cover" }}
-            onLoad={() => index === 0 && setIsLoaded(true)}
+            onLoad={() => handleImageLoad(index)}
           />
         ))}
         <div className="hero-overlay" aria-hidden="true"></div>
