@@ -92,7 +92,12 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="hero-section" role="banner">
+    <section
+      className="hero-section"
+      role="banner"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       <div className="hero-background">
         {backgroundImages.map((image, index) => (
           <Image
