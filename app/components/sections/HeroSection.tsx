@@ -53,19 +53,23 @@ const HeroSection = () => {
 
     // Rotate slogans every 4 seconds
     const sloganInterval = setInterval(() => {
-      setCurrentSlogan((prev) => (prev + 1) % slogans.length);
+      if (!isPaused) {
+        setCurrentSlogan((prev) => (prev + 1) % slogans.length);
+      }
     }, 4000);
 
     // Rotate background images every 6 seconds
     const imageInterval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
+      if (!isPaused) {
+        setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
+      }
     }, 6000);
 
     return () => {
       clearInterval(sloganInterval);
       clearInterval(imageInterval);
     };
-  }, []);
+  }, [isPaused]);
 
   const handleCTAClick = (type: "support" | "learn") => {
     // Add subtle haptic feedback if supported
