@@ -511,6 +511,81 @@ h6 {
   opacity: 1;
 }
 
+/* Accessibility Improvements */
+/* Skip to content link for accessibility */
+.skip-to-content {
+  position: fixed;
+  top: -100px;
+  left: 16px;
+  z-index: 1001;
+  background: #667eea;
+  color: white;
+  padding: 12px 20px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: top 0.3s ease;
+}
+
+.skip-to-content:focus {
+  top: 16px;
+}
+
+/* High contrast mode improvements */
+@media (prefers-contrast: high) {
+  .nav-link::after {
+    background: currentColor;
+  }
+
+  .mobile-nav-link.active::before {
+    background: currentColor;
+  }
+
+  .navigation-header {
+    border-bottom-width: 2px;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .navigation-header,
+  .nav-link,
+  .logo-button,
+  .donate-btn,
+  .mobile-menu-toggle,
+  .mobile-nav,
+  .mobile-nav-content,
+  .mobile-nav-link,
+  .mobile-donate-btn {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .hamburger-line {
+    transition: none !important;
+  }
+
+  .mobile-nav-link {
+    animation: none !important;
+  }
+
+  .mobile-donate-btn {
+    animation: none !important;
+  }
+}
+
+/* Focus management for mobile menu */
+.mobile-nav.open .mobile-nav-content {
+  outline: none;
+}
+
+/* Better keyboard navigation indicators */
+.mobile-menu-toggle:focus-visible,
+.mobile-menu-close:focus-visible {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
 /* Hero Section */
 .hero-section {
   margin-top: 80px;
