@@ -75,21 +75,13 @@ const HeroSection = () => {
     };
   };
 
+  // Separate effect for initial setup (runs only once)
   useEffect(() => {
     setIsLoaded(true);
+  }, []);
 
-    // Preload first few images for smooth transitions
-    const preloadImages = () => {
-      backgroundImages.slice(0, 3).forEach((image, index) => {
-        const responsiveSrc = getResponsiveImageSrc(image.src);
-        const img = new window.Image();
-        img.src = responsiveSrc.desktop;
-        img.onload = () => handleImageLoad(index);
-      });
-    };
-
-    preloadImages();
-
+  // Separate effect for intervals (depends only on isPaused)
+  useEffect(() => {
     // Rotate slogans every 4 seconds
     const sloganInterval = setInterval(() => {
       if (!isPaused) {
@@ -100,20 +92,7 @@ const HeroSection = () => {
     // Rotate background images every 6 seconds
     const imageInterval = setInterval(() => {
       if (!isPaused) {
-        setCurrentImageIndex((prev) => {
-          const nextIndex = (prev + 1) % backgroundImages.length;
-
-          // Preload the image after the next one
-          const imageAfterNext = (nextIndex + 1) % backgroundImages.length;
-          const responsiveSrc = getResponsiveImageSrc(
-            backgroundImages[imageAfterNext].src,
-          );
-          const img = new window.Image();
-          img.src = responsiveSrc.desktop;
-          img.onload = () => handleImageLoad(imageAfterNext);
-
-          return nextIndex;
-        });
+        setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
       }
     }, 6000);
 
