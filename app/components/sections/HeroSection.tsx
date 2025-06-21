@@ -32,42 +32,56 @@ const HeroSection = () => {
 
   const backgroundImages = [
     {
-      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1261-3d4766?format=webp&width=1200",
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1261-3d4766",
       alt: "TEEM Foundation representatives in traditional African attire at cultural celebration with international flags",
     },
     {
-      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1282-11d069?format=webp&width=1200",
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1282-11d069",
       alt: "TEEM Foundation team members and participants at Africa Day celebration showcasing cultural diversity",
     },
     {
-      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1284-69ee3d?format=webp&width=1200",
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1284-69ee3d",
       alt: "Community engagement and cultural exchange at TEEM Foundation event with participants in traditional dress",
     },
     {
-      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1343-fff635?format=webp&width=1200",
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1343-fff635",
       alt: "TEEM Foundation cultural celebration with participants wearing beautiful traditional African clothing",
     },
     {
-      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1349-83974a?format=webp&width=1200",
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1349-83974a",
       alt: "TEEM Foundation representatives engaging with community members at cultural event",
     },
     {
-      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1353-473061?format=webp&width=1200",
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1353-473061",
       alt: "TEEM Foundation Africa Day celebration with traditional dress and cultural displays",
     },
     {
-      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1438-924edc?format=webp&width=1200",
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1438-924edc",
       alt: "TEEM Foundation community outreach and cultural sharing at special event",
     },
     {
-      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1441-40b9ac?format=webp&width=1200",
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1441-40b9ac",
       alt: "TEEM Foundation cultural exchange program with participants in traditional African attire",
     },
   ];
 
+  // Generate responsive image sources for better performance across devices
+  const getResponsiveImageSrc = (baseSrc: string) => {
+    return {
+      mobile: `${baseSrc}?format=webp&width=800&height=600&fit=cover`,
+      tablet: `${baseSrc}?format=webp&width=1200&height=800&fit=cover`,
+      desktop: `${baseSrc}?format=webp&width=1920&height=1080&fit=cover`,
+      large: `${baseSrc}?format=webp&width=2560&height=1440&fit=cover`,
+    };
+  };
+
+  // Separate effect for initial setup (runs only once)
   useEffect(() => {
     setIsLoaded(true);
+  }, []);
 
+  // Separate effect for intervals (depends only on isPaused)
+  useEffect(() => {
     // Rotate slogans every 4 seconds
     const sloganInterval = setInterval(() => {
       if (!isPaused) {
@@ -109,8 +123,13 @@ const HeroSection = () => {
   };
 
   const handleImageLoad = (index: number) => {
-    setLoadedImages((prev) => new Set(prev).add(index));
-    if (index === 0) {
+    setLoadedImages((prev) => {
+      if (prev.has(index)) {
+        return prev; // Don't create new Set if index already exists
+      }
+      return new Set(prev).add(index);
+    });
+    if (index === 0 && !isLoaded) {
       setIsLoaded(true);
     }
   };
@@ -130,19 +149,33 @@ const HeroSection = () => {
       onMouseLeave={() => setIsPaused(false)}
     >
       <div className="hero-background">
-        {backgroundImages.map((image, index) => (
-          <Image
-            key={index}
-            src={image.src}
-            alt={image.alt}
-            className={`hero-image ${index === currentImageIndex ? "active" : ""} ${loadedImages.has(index) ? "loaded" : ""}`}
-            fill
-            priority={index === 0}
-            sizes="100vw"
-            style={{ objectFit: "cover" }}
-            onLoad={() => handleImageLoad(index)}
-          />
-        ))}
+        {backgroundImages.map((image, index) => {
+          const responsiveSrc = getResponsiveImageSrc(image.src);
+          return (
+            <div
+              key={index}
+              className={`hero-image-wrapper ${index === currentImageIndex ? "active" : ""}`}
+            >
+              <Image
+                src={responsiveSrc.desktop}
+                alt={image.alt}
+                className={`hero-image ${loadedImages.has(index) ? "loaded" : ""}`}
+                fill
+                priority={index === 0 || index === 1} // Preload first two images
+                sizes="(max-width: 640px) 800px, (max-width: 1024px) 1200px, (max-width: 1920px) 1920px, 2560px"
+                style={{
+                  objectFit: "cover",
+                  objectPosition: "center center",
+                }}
+                onLoad={() => handleImageLoad(index)}
+                quality={90}
+              />
+              {!loadedImages.has(index) && (
+                <div className="hero-image-skeleton" aria-hidden="true" />
+              )}
+            </div>
+          );
+        })}
         <div className="hero-overlay" aria-hidden="true"></div>
         <div className="hero-particles" aria-hidden="true">
           {Array.from({ length: 6 }).map((_, i) => {

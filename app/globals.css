@@ -206,41 +206,80 @@ h6 {
   display: flex;
   align-items: center;
   overflow: hidden;
+  aspect-ratio: 16/9;
+  min-aspect-ratio: 16/9;
+}
+
+@supports not (aspect-ratio: 16/9) {
+  .hero-section {
+    height: 90vh;
+  }
 }
 
 .hero-background {
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  contain: layout style paint;
 }
 
-.hero-image {
+.hero-image-wrapper {
+  position: absolute;
+  inset: 0;
   opacity: 0;
-  transition: opacity 1.5s ease-in-out;
+  transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 0;
 }
 
-.hero-image.loaded {
-  transition: opacity 1.5s ease-in-out;
-}
-
-.hero-image.active.loaded {
+.hero-image-wrapper.active {
   opacity: 1;
   z-index: 1;
 }
 
-.hero-image:not(.loaded)::before {
+.hero-image {
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+  z-index: 1;
+  transform: scale(1.02);
+  animation: subtle-zoom 20s ease-in-out infinite alternate;
+}
+
+.hero-image.loaded {
+  opacity: 1;
+}
+
+@keyframes subtle-zoom {
+  0% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+.hero-image-skeleton {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.1) 0%,
+    rgba(118, 75, 162, 0.15) 50%,
+    rgba(102, 126, 234, 0.1) 100%
+  );
+  z-index: 0;
+}
+
+.hero-image-skeleton::before {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.1) 0%,
+    transparent 0%,
     rgba(255, 255, 255, 0.2) 50%,
-    rgba(255, 255, 255, 0.1) 100%
+    transparent 100%
   );
-  animation: shimmer 2s infinite;
-  z-index: 1;
+  animation: shimmer 2s ease-in-out infinite;
 }
 
 @keyframes shimmer {
@@ -1314,6 +1353,8 @@ section {
 /* Image performance optimizations */
 img {
   content-visibility: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 .hero-image,
@@ -1321,6 +1362,37 @@ img {
 .gallery-image,
 .program-image {
   will-change: transform;
+}
+
+/* Enhanced hero image optimizations */
+.hero-image-wrapper {
+  contain: layout style paint;
+  transform: translateZ(0); /* Force hardware acceleration */
+}
+
+.hero-image {
+  backface-visibility: hidden;
+  perspective: 1000px;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Preload optimization for critical images */
+.hero-image[data-priority="true"] {
+  content-visibility: visible;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .hero-image {
+    animation: none !important;
+    transform: scale(1) !important;
+    transition: opacity 0.3s ease !important;
+  }
+
+  .hero-image-wrapper {
+    transition: opacity 0.3s ease !important;
+  }
 }
 
 /* Optimize transforms for better performance */
@@ -1448,6 +1520,21 @@ img {
 }
 
 /* Responsive Design */
+/* Large screen optimizations */
+@media (min-width: 1921px) {
+  .hero-section {
+    aspect-ratio: 21/9; /* Ultra-wide aspect ratio for large screens */
+  }
+
+  .hero-image {
+    object-position: center center;
+  }
+
+  .hero-title {
+    font-size: 4rem;
+  }
+}
+
 @media (max-width: 1024px) {
   .hero-title {
     font-size: 3rem;
@@ -1473,6 +1560,11 @@ img {
 
   .particle {
     display: none; /* Reduce particles on smaller screens for performance */
+  }
+
+  /* Improve image quality on medium screens */
+  .hero-section {
+    aspect-ratio: 16/10; /* Slightly taller aspect ratio for better content visibility */
   }
 }
 
@@ -1551,6 +1643,16 @@ img {
     flex-direction: column;
     gap: 16px;
     text-align: center;
+  }
+
+  /* Optimize hero section for tablet/mobile */
+  .hero-section {
+    aspect-ratio: 4/3;
+    min-height: 80vh;
+  }
+
+  .hero-image {
+    object-position: center 30%; /* Focus on upper portion for better mobile viewing */
   }
 }
 
@@ -1651,5 +1753,16 @@ img {
 
   .gallery-image {
     height: 200px;
+  }
+
+  /* Optimize hero images for mobile */
+  .hero-image {
+    animation: none; /* Disable zoom animation on mobile for performance */
+    transform: scale(1);
+  }
+
+  .hero-section {
+    margin-top: 70px; /* Adjust for mobile header */
+    min-height: 85vh; /* Slightly reduce height on mobile */
   }
 }
