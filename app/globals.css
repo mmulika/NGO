@@ -914,11 +914,28 @@ section {
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
+  background: #f7fafc;
 }
 
 .program-image:hover {
   transform: scale(1.02);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Image loading skeleton */
+.image-loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 .hero-image {
