@@ -32,6 +32,11 @@ export default function Home() {
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-background">
+          <img
+            src="https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/whatsapp-image-2025-06-16-at-22.05.31-1-b68eff?format=webp&width=1200"
+            alt="TEEM Foundation community gathering showing diverse group of participants"
+            className="hero-image"
+          />
           <div className="hero-overlay"></div>
           <div className="hero-container">
             <div className="hero-content">
