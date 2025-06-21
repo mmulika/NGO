@@ -1426,8 +1426,44 @@ img {
     padding: 0 16px;
   }
 
+  .hero-container {
+    padding: 0 16px;
+  }
+
   .hero-title {
     font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+    margin-bottom: 32px;
+  }
+
+  .hero-actions {
+    margin-bottom: 40px;
+  }
+
+  .cta-primary,
+  .cta-secondary {
+    padding: 16px 20px;
+    font-size: 15px;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  .hero-stats {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .stat-item {
+    flex: 1;
+    min-width: 100px;
   }
 
   .section-title {
