@@ -1372,11 +1372,37 @@ img {
 
   .hero-actions {
     flex-direction: column;
+    gap: 12px;
+  }
+
+  .cta-primary,
+  .cta-secondary {
+    width: 100%;
+    justify-content: center;
+    padding: 18px 24px;
   }
 
   .hero-stats {
     flex-direction: column;
     gap: 24px;
+    align-items: center;
+  }
+
+  .stat-item {
+    min-width: 120px;
+  }
+
+  .hero-description {
+    font-size: 1.1rem;
+  }
+
+  .scroll-indicator {
+    bottom: 20px;
+  }
+
+  .scroll-arrow {
+    width: 20px;
+    height: 20px;
   }
 
   .featured-stats {
