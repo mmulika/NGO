@@ -169,6 +169,21 @@ const HeroSection = () => {
           </div>
         </div>
 
+        {/* Image navigation dots */}
+        <div
+          className="hero-image-nav"
+          aria-label="Background image navigation"
+        >
+          {backgroundImages.map((_, index) => (
+            <button
+              key={index}
+              className={`image-nav-dot ${index === currentImageIndex ? "active" : ""}`}
+              onClick={() => setCurrentImageIndex(index)}
+              aria-label={`Show background image ${index + 1}`}
+            />
+          ))}
+        </div>
+
         {/* Scroll indicator */}
         <div className="scroll-indicator" aria-hidden="true">
           <div className="scroll-arrow"></div>
