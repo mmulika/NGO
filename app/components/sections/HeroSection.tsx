@@ -99,6 +99,13 @@ const HeroSection = () => {
     }
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent, index: number) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setCurrentImageIndex(index);
+    }
+  };
+
   return (
     <section
       className="hero-section"
