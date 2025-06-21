@@ -143,6 +143,7 @@ const HeroSection = () => {
 
   return (
     <section
+      id="hero"
       className="hero-section"
       role="banner"
       onMouseEnter={() => setIsPaused(true)}
