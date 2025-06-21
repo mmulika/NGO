@@ -78,6 +78,18 @@ const HeroSection = () => {
   useEffect(() => {
     setIsLoaded(true);
 
+    // Preload next few images for smooth transitions
+    const preloadImages = () => {
+      backgroundImages.slice(0, 3).forEach((image, index) => {
+        const responsiveSrc = getResponsiveImageSrc(image.src);
+        const img = new window.Image();
+        img.src = responsiveSrc.desktop;
+        img.onload = () => handleImageLoad(index);
+      });
+    };
+
+    preloadImages();
+
     // Rotate slogans every 4 seconds
     const sloganInterval = setInterval(() => {
       if (!isPaused) {
@@ -88,7 +100,19 @@ const HeroSection = () => {
     // Rotate background images every 6 seconds
     const imageInterval = setInterval(() => {
       if (!isPaused) {
-        setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
+        const nextIndex = (currentImageIndex + 1) % backgroundImages.length;
+        setCurrentImageIndex(nextIndex);
+
+        // Preload the next image after this one
+        const imageAfterNext = (nextIndex + 1) % backgroundImages.length;
+        if (!loadedImages.has(imageAfterNext)) {
+          const responsiveSrc = getResponsiveImageSrc(
+            backgroundImages[imageAfterNext].src,
+          );
+          const img = new window.Image();
+          img.src = responsiveSrc.desktop;
+          img.onload = () => handleImageLoad(imageAfterNext);
+        }
       }
     }, 6000);
 
@@ -96,7 +120,7 @@ const HeroSection = () => {
       clearInterval(sloganInterval);
       clearInterval(imageInterval);
     };
-  }, [isPaused]);
+  }, [isPaused, currentImageIndex, loadedImages]);
 
   const handleCTAClick = (type: "support" | "learn") => {
     // Add subtle haptic feedback if supported
