@@ -24,18 +24,46 @@ const StatItem = ({ number, label, delay = 0 }: StatItemProps) => (
 const HeroSection = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [currentSlogan, setCurrentSlogan] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const slogans = ["Empowering Youth", "Building Futures", "Creating Change"];
+
+  const backgroundImages = [
+    {
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/whatsapp-image-2025-06-16-at-22.27.54-9bc476?format=webp&width=1200",
+      alt: "Large group photo of TEEM Foundation program participants and community members",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1200&auto=format&fit=crop",
+      alt: "Students learning in classroom environment",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=80&w=1200&auto=format&fit=crop",
+      alt: "Young girls participating in educational activities",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1200&auto=format&fit=crop",
+      alt: "Community members working together on development projects",
+    },
+  ];
 
   useEffect(() => {
     setIsLoaded(true);
 
     // Rotate slogans every 4 seconds
-    const interval = setInterval(() => {
+    const sloganInterval = setInterval(() => {
       setCurrentSlogan((prev) => (prev + 1) % slogans.length);
     }, 4000);
 
-    return () => clearInterval(interval);
+    // Rotate background images every 6 seconds
+    const imageInterval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
+    }, 6000);
+
+    return () => {
+      clearInterval(sloganInterval);
+      clearInterval(imageInterval);
+    };
   }, []);
 
   const handleCTAClick = (type: "support" | "learn") => {
