@@ -214,6 +214,17 @@ h6 {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
 }
 
+.hero-image {
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  z-index: 0;
+}
+
+.hero-image.active {
+  opacity: 1;
+  z-index: 1;
+}
+
 .hero-overlay {
   position: absolute;
   inset: 0;
