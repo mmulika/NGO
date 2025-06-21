@@ -153,10 +153,13 @@ export default function Home() {
 
           <div className="image-grid">
             <div className="image-card">
-              <img
+              <Image
                 src="https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/whatsapp-image-2025-06-16-at-21.56.37-797bc2?format=webp&width=800"
                 alt="TEEM Foundation leaders and community members at an outreach event"
                 className="program-image"
+                width={800}
+                height={600}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
               <div className="image-overlay">
                 <div className="image-caption">Community Leadership</div>
@@ -166,10 +169,13 @@ export default function Home() {
               </div>
             </div>
             <div className="image-card">
-              <img
+              <Image
                 src="https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/whatsapp-image-2025-06-16-at-21.56.36-399dcb?format=webp&width=800"
                 alt="Sanitary towel distribution ceremony with young girls receiving essential hygiene supplies"
                 className="program-image"
+                width={800}
+                height={600}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
               <div className="image-overlay">
                 <div className="image-caption">Essential Support</div>
