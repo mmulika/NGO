@@ -92,6 +92,13 @@ const HeroSection = () => {
     }
   };
 
+  const handleImageLoad = (index: number) => {
+    setLoadedImages((prev) => new Set(prev).add(index));
+    if (index === 0) {
+      setIsLoaded(true);
+    }
+  };
+
   return (
     <section
       className="hero-section"
