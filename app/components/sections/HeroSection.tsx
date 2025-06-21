@@ -25,6 +25,7 @@ const HeroSection = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [currentSlogan, setCurrentSlogan] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   const slogans = ["Empowering Youth", "Building Futures", "Creating Change"];
 
