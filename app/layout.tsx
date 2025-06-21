@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "App",
-  description: "A Next.js application",
+  title: "TEEM Foundation - Empowering Youth Across Kenya",
+  description:
+    "Teenage Girls Empowerment Foundation (TEEM) is dedicated to empowering adolescent girls and boys across Kenya, focusing on breaking cycles of poverty, early pregnancies, and lack of education.",
 };
 
 export default function RootLayout({
@@ -12,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body suppressHydrationWarning={true}>{children}</body>
     </html>
   );
 }
