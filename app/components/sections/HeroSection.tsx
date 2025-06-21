@@ -24,19 +24,69 @@ const StatItem = ({ number, label, delay = 0 }: StatItemProps) => (
 const HeroSection = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [currentSlogan, setCurrentSlogan] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
 
   const slogans = ["Empowering Youth", "Building Futures", "Creating Change"];
+
+  const backgroundImages = [
+    {
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1261-3d4766?format=webp&width=1200",
+      alt: "TEEM Foundation representatives in traditional African attire at cultural celebration with international flags",
+    },
+    {
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1282-11d069?format=webp&width=1200",
+      alt: "TEEM Foundation team members and participants at Africa Day celebration showcasing cultural diversity",
+    },
+    {
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1284-69ee3d?format=webp&width=1200",
+      alt: "Community engagement and cultural exchange at TEEM Foundation event with participants in traditional dress",
+    },
+    {
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1343-fff635?format=webp&width=1200",
+      alt: "TEEM Foundation cultural celebration with participants wearing beautiful traditional African clothing",
+    },
+    {
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1349-83974a?format=webp&width=1200",
+      alt: "TEEM Foundation representatives engaging with community members at cultural event",
+    },
+    {
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1353-473061?format=webp&width=1200",
+      alt: "TEEM Foundation Africa Day celebration with traditional dress and cultural displays",
+    },
+    {
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1438-924edc?format=webp&width=1200",
+      alt: "TEEM Foundation community outreach and cultural sharing at special event",
+    },
+    {
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1441-40b9ac?format=webp&width=1200",
+      alt: "TEEM Foundation cultural exchange program with participants in traditional African attire",
+    },
+  ];
 
   useEffect(() => {
     setIsLoaded(true);
 
     // Rotate slogans every 4 seconds
-    const interval = setInterval(() => {
-      setCurrentSlogan((prev) => (prev + 1) % slogans.length);
+    const sloganInterval = setInterval(() => {
+      if (!isPaused) {
+        setCurrentSlogan((prev) => (prev + 1) % slogans.length);
+      }
     }, 4000);
 
-    return () => clearInterval(interval);
-  }, []);
+    // Rotate background images every 6 seconds
+    const imageInterval = setInterval(() => {
+      if (!isPaused) {
+        setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
+      }
+    }, 6000);
+
+    return () => {
+      clearInterval(sloganInterval);
+      clearInterval(imageInterval);
+    };
+  }, [isPaused]);
 
   const handleCTAClick = (type: "support" | "learn") => {
     // Add subtle haptic feedback if supported
@@ -58,19 +108,41 @@ const HeroSection = () => {
     }
   };
 
+  const handleImageLoad = (index: number) => {
+    setLoadedImages((prev) => new Set(prev).add(index));
+    if (index === 0) {
+      setIsLoaded(true);
+    }
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent, index: number) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setCurrentImageIndex(index);
+    }
+  };
+
   return (
-    <section className="hero-section" role="banner">
+    <section
+      className="hero-section"
+      role="banner"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       <div className="hero-background">
-        <Image
-          src="https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/whatsapp-image-2025-06-16-at-22.27.54-9bc476?format=webp&width=1200"
-          alt="Large group photo of TEEM Foundation program participants and community members"
-          className="hero-image"
-          fill
-          priority
-          sizes="100vw"
-          style={{ objectFit: "cover" }}
-          onLoad={() => setIsLoaded(true)}
-        />
+        {backgroundImages.map((image, index) => (
+          <Image
+            key={index}
+            src={image.src}
+            alt={image.alt}
+            className={`hero-image ${index === currentImageIndex ? "active" : ""} ${loadedImages.has(index) ? "loaded" : ""}`}
+            fill
+            priority={index === 0}
+            sizes="100vw"
+            style={{ objectFit: "cover" }}
+            onLoad={() => handleImageLoad(index)}
+          />
+        ))}
         <div className="hero-overlay" aria-hidden="true"></div>
         <div className="hero-particles" aria-hidden="true">
           {Array.from({ length: 6 }).map((_, i) => {
@@ -136,6 +208,26 @@ const HeroSection = () => {
               <StatItem number="4" label="Key Programs" delay={600} />
             </div>
           </div>
+        </div>
+
+        {/* Image navigation dots */}
+        <div
+          className="hero-image-nav"
+          aria-label="Background image navigation"
+        >
+          {backgroundImages.map((_, index) => (
+            <button
+              key={index}
+              className={`image-nav-dot ${index === currentImageIndex ? "active" : ""}`}
+              onClick={() => setCurrentImageIndex(index)}
+              onKeyDown={(e) => handleKeyDown(e, index)}
+              aria-label={`Show background image ${index + 1}`}
+            >
+              {index === currentImageIndex && !isPaused && (
+                <div className="progress-ring" />
+              )}
+            </button>
+          ))}
         </div>
 
         {/* Scroll indicator */}

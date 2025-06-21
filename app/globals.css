@@ -214,6 +214,44 @@ h6 {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
 }
 
+.hero-image {
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  z-index: 0;
+}
+
+.hero-image.loaded {
+  transition: opacity 1.5s ease-in-out;
+}
+
+.hero-image.active.loaded {
+  opacity: 1;
+  z-index: 1;
+}
+
+.hero-image:not(.loaded)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  animation: shimmer 2s infinite;
+  z-index: 1;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 .hero-overlay {
   position: absolute;
   inset: 0;
@@ -477,6 +515,63 @@ h6 {
 
 .stat-item:hover .stat-label {
   color: #ffd89b;
+}
+
+.hero-image-nav {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  gap: 12px;
+  opacity: 0;
+  animation: fadeIn 2s ease-out 1.5s both;
+}
+
+.image-nav-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.image-nav-dot:hover {
+  border-color: rgba(255, 255, 255, 0.8);
+  transform: scale(1.2);
+}
+
+.image-nav-dot.active {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 1);
+  transform: scale(1.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-ring {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid transparent;
+  border-top-color: rgba(255, 216, 155, 0.8);
+  border-radius: 50%;
+  animation: spin 6s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .scroll-indicator {
@@ -1428,6 +1523,16 @@ img {
     font-size: 1.1rem;
   }
 
+  .hero-image-nav {
+    bottom: 60px;
+    gap: 10px;
+  }
+
+  .image-nav-dot {
+    width: 10px;
+    height: 10px;
+  }
+
   .scroll-indicator {
     bottom: 20px;
   }
@@ -1474,6 +1579,17 @@ img {
 
   .hero-actions {
     margin-bottom: 40px;
+  }
+
+  .hero-image-nav {
+    bottom: 50px;
+    gap: 8px;
+  }
+
+  .image-nav-dot {
+    width: 8px;
+    height: 8px;
+    border-width: 1px;
   }
 
   .cta-primary,
