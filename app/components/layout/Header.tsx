@@ -17,8 +17,15 @@ const Header = ({ className = "" }: HeaderProps) => {
       setIsScrolled(window.scrollY > 20);
 
       // Update active section based on scroll position
-      const sections = ["hero", "about", "our-work", "projects", "get-involved", "contact"];
-      const currentSection = sections.find(id => {
+      const sections = [
+        "hero",
+        "about",
+        "our-work",
+        "projects",
+        "get-involved",
+        "contact",
+      ];
+      const currentSection = sections.find((id) => {
         const element = document.getElementById(id);
         if (element) {
           const rect = element.getBoundingClientRect();
@@ -75,7 +82,7 @@ const Header = ({ className = "" }: HeaderProps) => {
 
       window.scrollTo({
         top: elementPosition,
-        behavior: "smooth"
+        behavior: "smooth",
       });
 
       // Close mobile menu after navigation
@@ -92,7 +99,7 @@ const Header = ({ className = "" }: HeaderProps) => {
     { id: "our-work", label: "Our Work" },
     { id: "projects", label: "Projects" },
     { id: "get-involved", label: "Get Involved" },
-    { id: "contact", label: "Contact" }
+    { id: "contact", label: "Contact" },
   ];
 
   return (
@@ -105,114 +112,121 @@ const Header = ({ className = "" }: HeaderProps) => {
         role="navigation"
         aria-label="Main navigation"
       >
-      <div className="nav-container">
-        <div className="logo-section">
-          <button
-            onClick={() => scrollToSection("hero")}
-            className="logo-button"
-            aria-label="Go to top of page"
-          >
-            <div className="logo-circle">T</div>
-            <span className="logo-text">TEEM Foundation</span>
-          </button>
-        </div>
-
-        {/* Desktop Navigation */}
-        <div className="nav-links desktop-nav">
-          {navItems.map((item) => (
+        <div className="nav-container">
+          <div className="logo-section">
             <button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className={`nav-link ${activeSection === item.id ? "active" : ""}`}
-              aria-label={`Navigate to ${item.label} section`}
-              aria-current={activeSection === item.id ? "page" : undefined}
+              onClick={() => scrollToSection("hero")}
+              className="logo-button"
+              aria-label="Go to top of page"
             >
-              {item.label}
+              <div className="logo-circle">T</div>
+              <span className="logo-text">TEEM Foundation</span>
             </button>
-          ))}
-          <button
-            className="donate-btn"
-            aria-label="Donate to TEEM Foundation"
-            onClick={() => {
-              // Add donation functionality here
-              console.log("Donate button clicked");
-            }}
-          >
-            Donate Now
-          </button>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          className="mobile-menu-toggle"
-          onClick={toggleMobileMenu}
-          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={isMobileMenuOpen}
-          aria-controls="mobile-menu"
-        >
-          <span className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}></span>
-          <span className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}></span>
-          <span className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}></span>
-        </button>
-
-        {/* Mobile Navigation Menu */}
-        <div
-          ref={menuRef}
-          id="mobile-menu"
-          className={`mobile-nav ${isMobileMenuOpen ? "open" : ""}`}
-          aria-hidden={!isMobileMenuOpen}
-        >
-          <div className="mobile-nav-content">
-            <div className="mobile-nav-header">
-              <div className="mobile-logo-section">
-                <div className="logo-circle">T</div>
-                <span className="logo-text">TEEM Foundation</span>
-              </div>
-              <button
-                className="mobile-menu-close"
-                onClick={() => setIsMobileMenuOpen(false)}
-                aria-label="Close menu"
-              >
-                ×
-              </button>
-            </div>
-
-            <div className="mobile-nav-links">
-              {navItems.map((item, index) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`mobile-nav-link ${activeSection === item.id ? "active" : ""}`}
-                  aria-label={`Navigate to ${item.label} section`}
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  {item.label}
-                </button>
-              ))}
-
-              <button
-                className="mobile-donate-btn"
-                aria-label="Donate to TEEM Foundation"
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  // Add donation functionality here
-                  console.log("Mobile donate button clicked");
-                }}
-              >
-                Donate Now
-              </button>
-            </div>
           </div>
 
-          {/* Mobile menu overlay */}
+          {/* Desktop Navigation */}
+          <div className="nav-links desktop-nav">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className={`nav-link ${activeSection === item.id ? "active" : ""}`}
+                aria-label={`Navigate to ${item.label} section`}
+                aria-current={activeSection === item.id ? "page" : undefined}
+              >
+                {item.label}
+              </button>
+            ))}
+            <button
+              className="donate-btn"
+              aria-label="Donate to TEEM Foundation"
+              onClick={() => {
+                // Add donation functionality here
+                console.log("Donate button clicked");
+              }}
+            >
+              Donate Now
+            </button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="mobile-menu-toggle"
+            onClick={toggleMobileMenu}
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
+          >
+            <span
+              className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}
+            ></span>
+            <span
+              className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}
+            ></span>
+            <span
+              className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}
+            ></span>
+          </button>
+
+          {/* Mobile Navigation Menu */}
           <div
-            className="mobile-nav-overlay"
-            onClick={() => setIsMobileMenuOpen(false)}
-            aria-hidden="true"
-          ></div>
+            ref={menuRef}
+            id="mobile-menu"
+            className={`mobile-nav ${isMobileMenuOpen ? "open" : ""}`}
+            aria-hidden={!isMobileMenuOpen}
+          >
+            <div className="mobile-nav-content">
+              <div className="mobile-nav-header">
+                <div className="mobile-logo-section">
+                  <div className="logo-circle">T</div>
+                  <span className="logo-text">TEEM Foundation</span>
+                </div>
+                <button
+                  className="mobile-menu-close"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  aria-label="Close menu"
+                >
+                  ×
+                </button>
+              </div>
+
+              <div className="mobile-nav-links">
+                {navItems.map((item, index) => (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className={`mobile-nav-link ${activeSection === item.id ? "active" : ""}`}
+                    aria-label={`Navigate to ${item.label} section`}
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+
+                <button
+                  className="mobile-donate-btn"
+                  aria-label="Donate to TEEM Foundation"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    // Add donation functionality here
+                    console.log("Mobile donate button clicked");
+                  }}
+                >
+                  Donate Now
+                </button>
+              </div>
+            </div>
+
+            {/* Mobile menu overlay */}
+            <div
+              className="mobile-nav-overlay"
+              onClick={() => setIsMobileMenuOpen(false)}
+              aria-hidden="true"
+            ></div>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 };
 
