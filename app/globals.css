@@ -1531,6 +1531,17 @@ img {
     margin-bottom: 40px;
   }
 
+  .hero-image-nav {
+    bottom: 50px;
+    gap: 8px;
+  }
+
+  .image-nav-dot {
+    width: 8px;
+    height: 8px;
+    border-width: 1px;
+  }
+
   .cta-primary,
   .cta-secondary {
     padding: 16px 20px;
