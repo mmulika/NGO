@@ -201,10 +201,13 @@ export default function Home() {
 
           <div className="gallery-grid">
             <div className="gallery-item">
-              <img
+              <Image
                 src="https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/whatsapp-image-2025-06-16-at-21.56.37-1-4d7fb5?format=webp&width=800"
                 alt="Sanitary towel distribution event with community participation and support"
                 className="gallery-image"
+                width={800}
+                height={500}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
               <div className="gallery-content">
                 <h3 className="gallery-title">Hygiene Support Program</h3>
@@ -217,10 +220,13 @@ export default function Home() {
             </div>
 
             <div className="gallery-item">
-              <img
+              <Image
                 src="https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/whatsapp-image-2025-06-16-at-22.05.31-8fb7db?format=webp&width=800"
                 alt="Outdoor community training session with participants engaged in learning"
                 className="gallery-image"
+                width={800}
+                height={500}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
               <div className="gallery-content">
                 <h3 className="gallery-title">Community Training Sessions</h3>
@@ -232,10 +238,13 @@ export default function Home() {
             </div>
 
             <div className="gallery-item">
-              <img
+              <Image
                 src="https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/whatsapp-image-2025-06-16-at-22.27.54-9bc476?format=webp&width=800"
                 alt="Large group photo of TEEM Foundation program participants and facilitators"
                 className="gallery-image"
+                width={800}
+                height={500}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
               <div className="gallery-content">
                 <h3 className="gallery-title">Growing Community</h3>
