@@ -140,19 +140,33 @@ const HeroSection = () => {
       onMouseLeave={() => setIsPaused(false)}
     >
       <div className="hero-background">
-        {backgroundImages.map((image, index) => (
-          <Image
-            key={index}
-            src={image.src}
-            alt={image.alt}
-            className={`hero-image ${index === currentImageIndex ? "active" : ""} ${loadedImages.has(index) ? "loaded" : ""}`}
-            fill
-            priority={index === 0}
-            sizes="100vw"
-            style={{ objectFit: "cover" }}
-            onLoad={() => handleImageLoad(index)}
-          />
-        ))}
+        {backgroundImages.map((image, index) => {
+          const responsiveSrc = getResponsiveImageSrc(image.src);
+          return (
+            <div
+              key={index}
+              className={`hero-image-wrapper ${index === currentImageIndex ? "active" : ""}`}
+            >
+              <Image
+                src={responsiveSrc.desktop}
+                alt={image.alt}
+                className={`hero-image ${loadedImages.has(index) ? "loaded" : ""}`}
+                fill
+                priority={index === 0 || index === 1} // Preload first two images
+                sizes="(max-width: 640px) 800px, (max-width: 1024px) 1200px, (max-width: 1920px) 1920px, 2560px"
+                style={{
+                  objectFit: "cover",
+                  objectPosition: "center center",
+                }}
+                onLoad={() => handleImageLoad(index)}
+                quality={90}
+              />
+              {!loadedImages.has(index) && (
+                <div className="hero-image-skeleton" aria-hidden="true" />
+              )}
+            </div>
+          );
+        })}
         <div className="hero-overlay" aria-hidden="true"></div>
         <div className="hero-particles" aria-hidden="true">
           {Array.from({ length: 6 }).map((_, i) => {
