@@ -32,38 +32,48 @@ const HeroSection = () => {
 
   const backgroundImages = [
     {
-      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1261-3d4766?format=webp&width=1200",
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1261-3d4766",
       alt: "TEEM Foundation representatives in traditional African attire at cultural celebration with international flags",
     },
     {
-      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1282-11d069?format=webp&width=1200",
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1282-11d069",
       alt: "TEEM Foundation team members and participants at Africa Day celebration showcasing cultural diversity",
     },
     {
-      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1284-69ee3d?format=webp&width=1200",
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1284-69ee3d",
       alt: "Community engagement and cultural exchange at TEEM Foundation event with participants in traditional dress",
     },
     {
-      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1343-fff635?format=webp&width=1200",
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1343-fff635",
       alt: "TEEM Foundation cultural celebration with participants wearing beautiful traditional African clothing",
     },
     {
-      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1349-83974a?format=webp&width=1200",
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1349-83974a",
       alt: "TEEM Foundation representatives engaging with community members at cultural event",
     },
     {
-      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1353-473061?format=webp&width=1200",
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1353-473061",
       alt: "TEEM Foundation Africa Day celebration with traditional dress and cultural displays",
     },
     {
-      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1438-924edc?format=webp&width=1200",
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1438-924edc",
       alt: "TEEM Foundation community outreach and cultural sharing at special event",
     },
     {
-      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1441-40b9ac?format=webp&width=1200",
+      src: "https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/_i3a1441-40b9ac",
       alt: "TEEM Foundation cultural exchange program with participants in traditional African attire",
     },
   ];
+
+  // Generate responsive image sources for better performance across devices
+  const getResponsiveImageSrc = (baseSrc: string) => {
+    return {
+      mobile: `${baseSrc}?format=webp&width=800&height=600&fit=cover`,
+      tablet: `${baseSrc}?format=webp&width=1200&height=800&fit=cover`,
+      desktop: `${baseSrc}?format=webp&width=1920&height=1080&fit=cover`,
+      large: `${baseSrc}?format=webp&width=2560&height=1440&fit=cover`,
+    };
+  };
 
   useEffect(() => {
     setIsLoaded(true);
