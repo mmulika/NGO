@@ -331,10 +331,13 @@ export default function Home() {
               <button className="featured-cta">Learn More About Wendano</button>
             </div>
             <div className="featured-visual">
-              <img
+              <Image
                 src="https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/whatsapp-image-2025-06-16-at-22.31.12-e620cc?format=webp&width=800"
                 alt="Wendano Programme participants engaged in learning activities and community building"
                 className="featured-image"
+                width={800}
+                height={600}
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
           </div>
