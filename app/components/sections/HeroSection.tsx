@@ -123,8 +123,13 @@ const HeroSection = () => {
   };
 
   const handleImageLoad = (index: number) => {
-    setLoadedImages((prev) => new Set(prev).add(index));
-    if (index === 0) {
+    setLoadedImages((prev) => {
+      if (prev.has(index)) {
+        return prev; // Don't create new Set if index already exists
+      }
+      return new Set(prev).add(index);
+    });
+    if (index === 0 && !isLoaded) {
       setIsLoaded(true);
     }
   };
