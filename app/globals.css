@@ -1520,6 +1520,21 @@ img {
 }
 
 /* Responsive Design */
+/* Large screen optimizations */
+@media (min-width: 1921px) {
+  .hero-section {
+    aspect-ratio: 21/9; /* Ultra-wide aspect ratio for large screens */
+  }
+
+  .hero-image {
+    object-position: center center;
+  }
+
+  .hero-title {
+    font-size: 4rem;
+  }
+}
+
 @media (max-width: 1024px) {
   .hero-title {
     font-size: 3rem;
@@ -1545,6 +1560,11 @@ img {
 
   .particle {
     display: none; /* Reduce particles on smaller screens for performance */
+  }
+
+  /* Improve image quality on medium screens */
+  .hero-section {
+    aspect-ratio: 16/10; /* Slightly taller aspect ratio for better content visibility */
   }
 }
 
