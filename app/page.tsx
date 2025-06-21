@@ -35,8 +35,8 @@ export default function Home() {
       <section className="hero-section">
         <div className="hero-background">
           <Image
-            src="https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/whatsapp-image-2025-06-16-at-22.05.31-1-b68eff?format=webp&width=1200"
-            alt="TEEM Foundation community gathering showing diverse group of participants"
+            src="https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/whatsapp-image-2025-06-16-at-22.27.54-9bc476?format=webp&width=1200"
+            alt="Large group photo of TEEM Foundation program participants and community members"
             className="hero-image"
             fill
             priority
