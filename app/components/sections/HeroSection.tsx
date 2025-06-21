@@ -36,16 +36,16 @@ const HeroSection = () => {
       alt: "Large group photo of TEEM Foundation program participants and community members",
     },
     {
-      src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1200&auto=format&fit=crop",
-      alt: "Students learning in classroom environment",
+      src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1200&auto=format&fit=crop",
+      alt: "Students engaged in collaborative learning activities",
     },
     {
-      src: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=80&w=1200&auto=format&fit=crop",
-      alt: "Young girls participating in educational activities",
+      src: "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?q=80&w=1200&auto=format&fit=crop",
+      alt: "Young people participating in community development workshop",
     },
     {
-      src: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1200&auto=format&fit=crop",
-      alt: "Community members working together on development projects",
+      src: "https://images.unsplash.com/photo-1522661067900-ab829854a57f?q=80&w=1200&auto=format&fit=crop",
+      alt: "Youth empowerment and education program in action",
     },
   ];
 
