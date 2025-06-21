@@ -206,12 +206,21 @@ h6 {
   display: flex;
   align-items: center;
   overflow: hidden;
+  aspect-ratio: 16/9;
+  min-aspect-ratio: 16/9;
+}
+
+@supports not (aspect-ratio: 16/9) {
+  .hero-section {
+    height: 90vh;
+  }
 }
 
 .hero-background {
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  contain: layout style paint;
 }
 
 .hero-image-wrapper {
