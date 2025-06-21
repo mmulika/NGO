@@ -89,16 +89,19 @@ const HeroSection = () => {
   return (
     <section className="hero-section" role="banner">
       <div className="hero-background">
-        <Image
-          src="https://cdn.builder.io/api/v1/assets/374fd33642d546eab403369d5fd6f814/whatsapp-image-2025-06-16-at-22.27.54-9bc476?format=webp&width=1200"
-          alt="Large group photo of TEEM Foundation program participants and community members"
-          className="hero-image"
-          fill
-          priority
-          sizes="100vw"
-          style={{ objectFit: "cover" }}
-          onLoad={() => setIsLoaded(true)}
-        />
+        {backgroundImages.map((image, index) => (
+          <Image
+            key={index}
+            src={image.src}
+            alt={image.alt}
+            className={`hero-image ${index === currentImageIndex ? "active" : ""}`}
+            fill
+            priority={index === 0}
+            sizes="100vw"
+            style={{ objectFit: "cover" }}
+            onLoad={() => index === 0 && setIsLoaded(true)}
+          />
+        ))}
         <div className="hero-overlay" aria-hidden="true"></div>
         <div className="hero-particles" aria-hidden="true">
           {Array.from({ length: 6 }).map((_, i) => {
