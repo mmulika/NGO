@@ -1339,6 +1339,14 @@ img {
   .nav-links {
     gap: 24px;
   }
+
+  .hero-stats {
+    gap: 32px;
+  }
+
+  .particle {
+    display: none; /* Reduce particles on smaller screens for performance */
+  }
 }
 
 @media (max-width: 768px) {
