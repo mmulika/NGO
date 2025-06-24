@@ -326,13 +326,15 @@ h6 {
   position: absolute;
   top: 0;
   right: 0;
-  width: 280px;
+  width: min(280px, 85vw);
+  max-width: 85vw;
   height: 100vh;
   background: white;
   box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
   transform: translateX(100%);
   transition: transform 0.3s ease;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .mobile-menu-overlay.active .mobile-menu {
