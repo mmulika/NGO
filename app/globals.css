@@ -75,6 +75,33 @@ body {
   }
 }
 
+:root {
+  /* Spacing scale for mobile-first design */
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 40px;
+  --space-3xl: 48px;
+
+  /* Container max-widths */
+  --container-sm: 100%;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1200px;
+
+  /* Mobile-safe viewport units */
+  --vh-small: 100vh;
+  --vw-safe: 100vw;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --vh-small: 100svh; /* Safe area height on mobile */
+  }
+}
+
 body {
   font-family:
     "Inter",
@@ -87,6 +114,7 @@ body {
   color: #1a202c;
   background-color: #ffffff;
   font-size: 16px;
+  min-width: 320px; /* Minimum supported screen width */
 }
 
 /* Typography - Mobile First */
