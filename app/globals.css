@@ -2845,6 +2845,45 @@ img {
     justify-content: center;
     min-height: 52px;
     font-size: 16px;
+    max-width: 300px;
+  }
+
+  /* Hero section mobile centering */
+  .hero-container {
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .hero-description {
+    text-align: center;
+    margin-bottom: 32px;
+    max-width: 90%;
+  }
+
+  .hero-actions {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-stats {
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    margin-top: 16px;
   }
 
   /* Grid layout improvements */
@@ -2863,6 +2902,8 @@ img {
 
   .hero-section {
     min-height: 80vh;
+    display: flex;
+    align-items: center;
   }
 
   /* Image optimization */
@@ -2885,16 +2926,19 @@ img {
   .container,
   .nav-container,
   .hero-container {
-    padding: 0 12px;
+    padding: 0 16px;
   }
 
   .hero-title {
     font-size: 1.75rem;
     line-height: 1.1;
+    text-align: center;
   }
 
   .hero-description {
     font-size: 0.95rem;
+    text-align: center;
+    max-width: 95%;
   }
 
   .mobile-menu {
@@ -2905,11 +2949,19 @@ img {
     gap: 12px;
     flex-wrap: wrap;
     justify-content: center;
+    width: 100%;
   }
 
   .stat-item {
     min-width: 70px;
     flex: 1 1 auto;
+    text-align: center;
+  }
+
+  .cta-primary,
+  .cta-secondary {
+    max-width: 280px;
+    width: 100%;
   }
 }
 
