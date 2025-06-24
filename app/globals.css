@@ -7,6 +7,14 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  position: relative;
 }
 
 /* Performance optimizations */
@@ -99,9 +107,11 @@ h6 {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: min(1200px, 100vw);
   margin: 0 auto;
   padding: 0 16px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Responsive container padding */
@@ -132,12 +142,14 @@ h6 {
 }
 
 .nav-container {
-  max-width: 1200px;
+  max-width: min(1200px, 100vw);
   margin: 0 auto;
   padding: 0 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 @media (min-width: 640px) {
@@ -310,7 +322,8 @@ h6 {
   position: absolute;
   top: 0;
   right: 0;
-  width: 280px;
+  width: min(280px, 85vw);
+  max-width: 320px;
   height: 100vh;
   background: white;
   box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
@@ -550,13 +563,15 @@ h6 {
 .hero-container {
   position: relative;
   z-index: 2;
-  max-width: 1200px;
+  max-width: min(1200px, 100vw);
   margin: 0 auto;
   padding: 0 16px;
   color: white;
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 @media (min-width: 640px) {
