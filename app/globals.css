@@ -2422,7 +2422,9 @@ section {
 img {
   content-visibility: auto;
   max-width: 100%;
+  width: 100%;
   height: auto;
+  object-fit: cover;
 }
 
 .hero-image,
@@ -2685,6 +2687,53 @@ img {
   .project-card:active,
   .involvement-card:active {
     transform: scale(0.98);
+  }
+
+  /* Prevent text selection on buttons */
+  button,
+  .nav-link,
+  .cta-primary,
+  .cta-secondary {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Fix layout shifts */
+  .hero-actions {
+    width: 100%;
+  }
+
+  .hero-actions .cta-primary,
+  .hero-actions .cta-secondary {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Better spacing for cards */
+  .work-card,
+  .project-card,
+  .involvement-card {
+    margin-bottom: 0;
+    width: 100%;
+  }
+
+  /* Ensure full width utilization */
+  .container {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  /* Fix overflow issues */
+  .hero-content,
+  .about-content,
+  .work-content,
+  .projects-content {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 }
 
