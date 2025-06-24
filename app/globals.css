@@ -2656,6 +2656,17 @@ img {
 
 /* Touch-friendly improvements for mobile */
 @media (max-width: 767px) {
+  /* Prevent horizontal scrolling */
+  * {
+    max-width: 100vw;
+  }
+
+  /* Ensure images don't overflow */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
   /* Larger touch targets */
   button,
   .nav-link,
@@ -2663,6 +2674,7 @@ img {
     min-height: 44px;
     display: flex;
     align-items: center;
+    justify-content: center;
   }
 
   /* Better button spacing */
@@ -2686,6 +2698,32 @@ img {
   .project-card:active,
   .involvement-card:active {
     transform: scale(0.98);
+  }
+
+  /* Prevent text overflow */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  div {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Better mobile spacing */
+  .hero-actions {
+    gap: 16px;
+  }
+
+  /* Responsive image containers */
+  .hero-image-wrapper,
+  .image-card,
+  .gallery-item {
+    width: 100%;
+    max-width: 100%;
   }
 }
 
