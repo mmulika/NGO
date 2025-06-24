@@ -604,11 +604,22 @@ h6 {
   transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   width: 100%;
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: inherit;
 }
 
 @media (min-width: 640px) {
   .hero-container {
     padding: 0 24px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-container {
+    justify-content: flex-start;
+    align-items: center;
   }
 }
 
@@ -619,11 +630,14 @@ h6 {
 
 .hero-content {
   max-width: 100%;
+  text-align: center;
+  margin: 0 auto;
 }
 
 @media (min-width: 768px) {
   .hero-content {
     max-width: 600px;
+    text-align: left;
   }
 }
 
@@ -740,6 +754,8 @@ h6 {
   transform: translateY(20px);
   animation: fadeInUp 0.8s ease-out 0.8s both;
   flex-direction: column;
+  width: 100%;
+  align-items: center;
 }
 
 @media (min-width: 640px) {
@@ -747,12 +763,15 @@ h6 {
     flex-direction: row;
     gap: 16px;
     margin-bottom: 50px;
+    justify-content: center;
   }
 }
 
 @media (min-width: 768px) {
   .hero-actions {
     margin-bottom: 60px;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 }
 
@@ -862,18 +881,19 @@ h6 {
   animation: fadeInUp 0.8s ease-out 1s both;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
 }
 
 @media (min-width: 640px) {
   .hero-stats {
     gap: 32px;
-    justify-content: flex-start;
   }
 }
 
 @media (min-width: 768px) {
   .hero-stats {
     gap: 48px;
+    justify-content: flex-start;
   }
 }
 
