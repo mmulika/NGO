@@ -23,6 +23,7 @@ const GalleryItem = ({ src, alt, title, description }: GalleryItemProps) => (
       width={800}
       height={500}
       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+      unoptimized
     />
     <div className="gallery-content">
       <h3 className="gallery-title">{title}</h3>
