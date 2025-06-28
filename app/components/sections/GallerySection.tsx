@@ -94,11 +94,7 @@ const GallerySection = () => {
       <div className="container">
         <div className="gallery-grid">
           {galleryItems.map((item, index) => (
-            <GalleryItem
-              key={`image-${index}`}
-              src={item.src}
-              alt={item.alt}
-            />
+            <GalleryItem key={`image-${index}`} src={item.src} alt={item.alt} />
           ))}
 
           {videoItems.map((video, index) => (
@@ -112,7 +108,6 @@ const GallerySection = () => {
       </div>
     </section>
   );
-};
 };
 
 export default GallerySection;
