@@ -42,73 +42,43 @@ const GallerySection = () => {
   const galleryItems = [
     {
       src: "https://cdn.builder.io/api/v1/image/assets/374fd33642d546eab403369d5fd6f814/4569d8b9154a4ef386786fdd17888915?format=webp&width=800",
-      alt: "TEEM Foundation community outreach program in action",
-      title: "Community Outreach",
-      description:
-        "Engaging directly with communities to understand their needs and provide targeted support for youth development.",
+      alt: "TEEM Foundation community outreach program",
     },
     {
       src: "https://cdn.builder.io/api/v1/image/assets/374fd33642d546eab403369d5fd6f814/538cf24bfcdc43d8be4042132ae49e3b?format=webp&width=800",
-      alt: "Educational workshop session with young participants",
-      title: "Educational Workshops",
-      description:
-        "Interactive learning sessions that empower young people with knowledge and skills for their future success.",
+      alt: "Educational workshop session",
     },
     {
       src: "https://cdn.builder.io/api/v1/image/assets/374fd33642d546eab403369d5fd6f814/62a428237a4d40458f701547453dfc86?format=webp&width=800",
-      alt: "Youth leadership development program participants",
-      title: "Leadership Development",
-      description:
-        "Building confident leaders through mentorship and hands-on experience in community service and advocacy.",
+      alt: "Youth leadership development",
     },
     {
       src: "https://cdn.builder.io/api/v1/image/assets/374fd33642d546eab403369d5fd6f814/1436a03f6aa34125aa534d611c3fc333?format=webp&width=800",
-      alt: "Skills training session for teenage girls and boys",
-      title: "Skills Training",
-      description:
-        "Practical life skills workshops covering financial literacy, cooking, gardening, and vocational training opportunities.",
+      alt: "Skills training session",
     },
     {
       src: "https://cdn.builder.io/api/v1/image/assets/374fd33642d546eab403369d5fd6f814/a65c96b22b3f46629f060425b51b050c?format=webp&width=800",
-      alt: "Health and hygiene awareness campaign",
-      title: "Health & Hygiene",
-      description:
-        "Comprehensive health education and hygiene supply distribution to ensure young people stay healthy and in school.",
+      alt: "Health and hygiene campaign",
     },
     {
       src: "https://cdn.builder.io/api/v1/image/assets/374fd33642d546eab403369d5fd6f814/e871c6c1f0a346a2b7bfc2acdc4e979a?format=webp&width=800",
-      alt: "Community gathering and celebration event",
-      title: "Community Celebrations",
-      description:
-        "Bringing communities together through cultural events that strengthen bonds and celebrate achievements.",
+      alt: "Community celebration event",
     },
     {
       src: "https://cdn.builder.io/api/v1/image/assets/374fd33642d546eab403369d5fd6f814/3ae520dcc24b4681ae1a841af89de8c4?format=webp&width=800",
-      alt: "Environmental conservation project with youth volunteers",
-      title: "Environmental Action",
-      description:
-        "Youth-led environmental conservation projects that protect our natural resources while building responsibility.",
+      alt: "Environmental conservation project",
     },
     {
       src: "https://cdn.builder.io/api/v1/image/assets/374fd33642d546eab403369d5fd6f814/1568aabcefb94b1888c4ac2e9d766f74?format=webp&width=800",
-      alt: "Sports and recreation activities for youth development",
-      title: "Sports & Recreation",
-      description:
-        "Using sports and recreational activities to build teamwork, discipline, and physical health among participants.",
+      alt: "Sports and recreation activities",
     },
     {
       src: "https://cdn.builder.io/api/v1/image/assets/374fd33642d546eab403369d5fd6f814/1d852ab4b2064ec8a580f5063f303fbd?format=webp&width=800",
-      alt: "Educational scholarship and support program",
-      title: "Educational Support",
-      description:
-        "Providing scholarships, school supplies, and educational resources to ensure no child is left behind.",
+      alt: "Educational support program",
     },
     {
       src: "https://cdn.builder.io/api/v1/image/assets/374fd33642d546eab403369d5fd6f814/6c22e2453289413b82fb408375207c16?format=webp&width=800",
-      alt: "TEEM Foundation team and volunteers working together",
-      title: "Our Team in Action",
-      description:
-        "Dedicated volunteers and staff members working tirelessly to create lasting positive change in communities.",
+      alt: "TEEM Foundation team",
     },
   ];
 
@@ -116,44 +86,33 @@ const GallerySection = () => {
     {
       videoId: "A6pDPcg8dIY",
       title: "TEEM Foundation Impact Story",
-      description:
-        "Watch how TEEM Foundation is transforming lives and communities across Kenya through our comprehensive youth empowerment programs.",
     },
   ];
 
   return (
     <section id="gallery" className="gallery-section">
       <div className="container">
-        <SectionIntro
-          title="Our Impact in Action"
-          subtitle="See how we're making a real difference in communities across Kenya through our programs and initiatives."
-        />
-
         <div className="gallery-grid">
-          {/* Render all gallery images */}
           {galleryItems.map((item, index) => (
             <GalleryItem
               key={`image-${index}`}
               src={item.src}
               alt={item.alt}
-              title={item.title}
-              description={item.description}
             />
           ))}
 
-          {/* Render video items */}
           {videoItems.map((video, index) => (
             <VideoItem
               key={`video-${index}`}
               videoId={video.videoId}
               title={video.title}
-              description={video.description}
             />
           ))}
         </div>
       </div>
     </section>
   );
+};
 };
 
 export default GallerySection;
