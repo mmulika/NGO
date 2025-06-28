@@ -2742,46 +2742,7 @@ img {
   transform: scale(1.02);
 }
 
-.gallery-content {
-  padding: 20px;
-}
-
-@media (min-width: 768px) {
-  .gallery-content {
-    padding: 24px;
-  }
-}
-
-.gallery-title {
-  font-size: 1.125rem;
-  font-weight: 600;
-  margin-bottom: 10px;
-  color: #2d3748;
-  transition: color 0.2s ease;
-}
-
-@media (min-width: 768px) {
-  .gallery-title {
-    font-size: 1.25rem;
-    margin-bottom: 12px;
-  }
-}
-
-.gallery-item:hover .gallery-title {
-  color: #667eea;
-}
-
-.gallery-description {
-  color: #4a5568;
-  line-height: 1.6;
-  font-size: 0.9rem;
-}
-
-@media (min-width: 768px) {
-  .gallery-description {
-    font-size: 1rem;
-  }
-}
+/* Gallery content styles removed - images only */
 
 /* Gallery loading states */
 .gallery-image-loading {
