@@ -1,21 +1,17 @@
 import Image from "next/image";
-import SectionIntro from "../ui/SectionIntro";
 
 interface GalleryItemProps {
   src: string;
   alt: string;
-  title: string;
-  description: string;
 }
 
 interface VideoItemProps {
   videoId: string;
   title: string;
-  description: string;
 }
 
-const GalleryItem = ({ src, alt, title, description }: GalleryItemProps) => (
-  <article className="gallery-item">
+const GalleryItem = ({ src, alt }: GalleryItemProps) => (
+  <div className="gallery-item">
     <Image
       src={src}
       alt={alt}
@@ -25,15 +21,11 @@ const GalleryItem = ({ src, alt, title, description }: GalleryItemProps) => (
       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       unoptimized
     />
-    <div className="gallery-content">
-      <h3 className="gallery-title">{title}</h3>
-      <p className="gallery-description">{description}</p>
-    </div>
-  </article>
+  </div>
 );
 
-const VideoItem = ({ videoId, title, description }: VideoItemProps) => (
-  <article className="gallery-item video-item">
+const VideoItem = ({ videoId, title }: VideoItemProps) => (
+  <div className="gallery-item video-item">
     <div className="video-wrapper">
       <iframe
         src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`}
@@ -43,11 +35,7 @@ const VideoItem = ({ videoId, title, description }: VideoItemProps) => (
         loading="lazy"
       />
     </div>
-    <div className="gallery-content">
-      <h3 className="gallery-title">{title}</h3>
-      <p className="gallery-description">{description}</p>
-    </div>
-  </article>
+  </div>
 );
 
 const GallerySection = () => {
