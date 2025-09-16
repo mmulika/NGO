@@ -1,0 +1,66 @@
+/*!******************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[3]!./app/components/layout/header-paypal.module.css ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************/
+.header-paypal_paypalModal__xXQEq {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+}
+
+.header-paypal_paypalModal__xXQEq.header-paypal_active__KO8yS {
+  display: flex;
+}
+
+.header-paypal_backdrop__tvy3l {
+  position: absolute;
+  inset: 0;
+  background: var(--paypal-backdrop);
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+}
+
+.header-paypal_content__te1qD {
+  position: relative;
+  background: var(--paypal-bg);
+  border-radius: var(--paypal-radius);
+  padding: var(--paypal-padding);
+  width: calc(100% - 40px);
+  max-width: var(--paypal-max-width);
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.2);
+  z-index: 1;
+}
+
+.header-paypal_header__vsTEz {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.header-paypal_closeBtn__Bd_WQ {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.header-paypal_body__3OBs5 {
+  min-height: 64px;
+}
+
+.header-paypal_error__HQ4ca {
+  color: #c53030;
+  margin-bottom: 12px;
+}
+
+@media (min-width: 640px) {
+  .header-paypal_content__te1qD {
+    padding: 28px;
+  }
+}
+
