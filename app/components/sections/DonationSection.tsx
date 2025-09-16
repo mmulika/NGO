@@ -39,7 +39,7 @@ export default function DonationSection() {
       if ((window as any).paypal && (window as any).paypal.HostedButtons) {
         try {
           // If the container already has children, assume it's rendered
-          if (container.childElementCount > 0) {
+          if (container && container.childElementCount > 0) {
             // @ts-ignore
             (window as any)[renderedFlag] = true;
             return;
