@@ -194,7 +194,7 @@ const Header = ({ className = "" }: HeaderProps) => {
               <button
                 className="mobile-donate-btn"
                 aria-label="Donate to TEEM Foundation"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => scrollToSection("donate")}
               >
                 Donate Now
               </button>
