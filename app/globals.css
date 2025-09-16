@@ -94,6 +94,13 @@ body {
   /* Mobile-safe viewport units */
   --vh-small: 100vh;
   --vw-safe: 100vw;
+
+  /* PayPal modal variables */
+  --paypal-backdrop: rgba(0, 0, 0, 0.6);
+  --paypal-bg: #ffffff;
+  --paypal-radius: 12px;
+  --paypal-max-width: 520px;
+  --paypal-padding: 20px;
 }
 
 @media (max-width: 640px) {
