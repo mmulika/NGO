@@ -53,7 +53,7 @@ export default function DonationSection() {
       }
     } else {
       const script = document.createElement("script");
-      script.src = "https://www.paypal.com/sdk/js?client-id=BAAomlFNxNPJgGtgdXPGZoKo7JizFMJ6wCJp6WLe8Pb9Z5ALLEURBDiteqr4JdvHSf0u2WuiLiOyRJn-Y0&components=hosted-buttons&disable-funding=venmo&currency=GBP";
+      script.src = "https://www.paypal.com/sdk/js?client-id=BAAomlFNxNPJgGtgdXPGZoKo7JizFMJ6wCJp6WLe8Pb9Z5ALLEURBDiteqr4JdvHSf0u2WuiLiOyRJn-Y0&components=hosted-buttons&disable-funding=venmo,paylater&currency=GBP";
       script.async = true;
       script.crossOrigin = "anonymous";
       script.addEventListener("load", initPayPal);
