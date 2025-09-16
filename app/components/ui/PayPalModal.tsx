@@ -75,7 +75,7 @@ export default function PayPalModal() {
       // @ts-ignore
       if ((window as any).paypal && (window as any).paypal.HostedButtons) {
         try {
-          if (container.childElementCount > 0) {
+          if (container && container.childElementCount > 0) {
             // @ts-ignore
             (window as any)[renderedFlag] = true;
             return;
