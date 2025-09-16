@@ -1,11 +1,3 @@
-:global(:root) {
-  --paypal-backdrop: rgba(0, 0, 0, 0.6);
-  --paypal-bg: #ffffff;
-  --paypal-radius: 12px;
-  --paypal-max-width: 520px;
-  --paypal-padding: 20px;
-}
-
 .paypalModal {
   display: none;
   align-items: center;
