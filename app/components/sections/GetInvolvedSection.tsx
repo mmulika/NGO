@@ -113,7 +113,6 @@ const GetInvolvedSection = () => {
         </div>
       </div>
 
-      <DonationSection />
 
     </section>
   );
