@@ -1,7 +1,5 @@
 import SectionIntro from "../ui/SectionIntro";
 
-import DonationSection from './DonationSection';
-
 interface InvolvementCardProps {
   icon: string;
   title: string;
