@@ -13,7 +13,7 @@ import TestimonialSection from "./components/sections/TestimonialSection";
 import Footer from "./components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "TEEM Foundation - Empowering Youth Across Kenya",
+  title: "TEEM Foundation - Empowering Youth in Kenya",
   description:
     "Teenage Girls Empowerment Foundation (TEEM) is dedicated to empowering adolescent girls and boys across Kenya, focusing on breaking cycles of poverty, early pregnancies, and lack of education.",
   keywords:
