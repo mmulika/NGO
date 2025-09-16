@@ -161,16 +161,45 @@ export default function PayPalModal() {
 
         <div className="paypal-modal-content">
           <h3 className="donation-title">Donate</h3>
-          <p className="donation-description">Support our work securely via PayPal.</p>
-          <div id={containerId} />
+          <p className="donation-description">Support our work securely via PayPal or scan the QR code to pay.</p>
+
+          <div className="paypal-modal-grid">
+            <div className="paypal-buttons-column">
+              <div id={containerId} />
+            </div>
+
+            <div className="paypal-qr-column" aria-hidden="false">
+              <figure className="paypal-qr-figure">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F374fd33642d546eab403369d5fd6f814%2Ff5c0c01e3f7e41c4bac21a540f0c4190?format=webp&width=800"
+                  alt="TEEM Foundation donation QR code"
+                  className="paypal-qr-image"
+                />
+                <figcaption className="paypal-qr-caption">Scan this QR code to donate</figcaption>
+              </figure>
+            </div>
+          </div>
         </div>
       </div>
 
       <style>{`
         .paypal-modal-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.5);z-index:1000}
-        .paypal-modal{background:#fff;border-radius:8px;max-width:520px;width:94%;padding:20px;position:relative}
+        .paypal-modal{background:#fff;border-radius:8px;max-width:720px;width:96%;padding:20px;position:relative}
         .paypal-modal-close{position:absolute;right:12px;top:10px;background:transparent;border:0;font-size:24px;cursor:pointer}
         .paypal-modal-content{padding-top:8px}
+
+        .paypal-modal-grid{display:flex;gap:16px;align-items:flex-start}
+        .paypal-buttons-column{flex:1;min-width:220px}
+        .paypal-qr-column{width:220px;display:flex;justify-content:center}
+        .paypal-qr-figure{margin:0;text-align:center}
+        .paypal-qr-image{max-width:100%;height:auto;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08)}
+        .paypal-qr-caption{font-size:13px;color:var(--muted,#666);margin-top:8px}
+
+        @media (max-width: 520px){
+          .paypal-modal{max-width:520px;padding:16px}
+          .paypal-modal-grid{flex-direction:column}
+          .paypal-qr-column{width:100%}
+        }
       `}</style>
     </div>
   );
