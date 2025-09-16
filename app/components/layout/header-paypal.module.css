@@ -1,4 +1,4 @@
-:root {
+:global(:root) {
   --paypal-backdrop: rgba(0, 0, 0, 0.6);
   --paypal-bg: #ffffff;
   --paypal-radius: 12px;
