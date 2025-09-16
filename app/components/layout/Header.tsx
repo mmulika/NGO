@@ -116,6 +116,7 @@ const Header = ({ className = "" }: HeaderProps) => {
             <button
               className="donate-btn"
               aria-label="Donate to TEEM Foundation"
+              onClick={() => scrollToSection("donate")}
             >
               Donate Now
             </button>
