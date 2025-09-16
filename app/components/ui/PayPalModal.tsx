@@ -27,6 +27,46 @@ export default function PayPalModal() {
 
     const renderedFlag = `__paypal_hosted_buttons_rendered_${hostedButtonId}`;
 
+    // Temporarily filter noisy PayPal messages about paylater ineligibility while modal is open
+    const origConsoleError = console.error.bind(console);
+    const origConsoleWarn = console.warn.bind(console);
+    const origConsoleInfo = console.info.bind(console);
+    const PAYPAL_NOISE_KEY = 'ncps_standalone_paylater_ineligible';
+
+    function shouldFilterMessage(args: any[]) {
+      try {
+        for (const a of args) {
+          if (!a) continue;
+          if (typeof a === 'string') {
+            if (a.includes(PAYPAL_NOISE_KEY) || a.includes('paylater_ineligible')) return true;
+          } else if (typeof a === 'object') {
+            try {
+              const s = JSON.stringify(a);
+              if (s && (s.includes(PAYPAL_NOISE_KEY) || s.includes('paylater_ineligible'))) return true;
+            } catch (e) {
+              // ignore stringify errors
+            }
+          }
+        }
+      } catch (e) {
+        // noop
+      }
+      return false;
+    }
+
+    console.error = (...args: any[]) => {
+      if (shouldFilterMessage(args)) return;
+      origConsoleError(...args);
+    };
+    console.warn = (...args: any[]) => {
+      if (shouldFilterMessage(args)) return;
+      origConsoleWarn(...args);
+    };
+    console.info = (...args: any[]) => {
+      if (shouldFilterMessage(args)) return;
+      origConsoleInfo(...args);
+    };
+
     function initPayPal() {
       // @ts-ignore
       if (typeof window === "undefined" || !(window as any).paypal) return;
