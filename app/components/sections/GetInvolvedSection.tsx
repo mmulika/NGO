@@ -1,5 +1,7 @@
 import SectionIntro from "../ui/SectionIntro";
 
+import DonationSection from './DonationSection';
+
 interface InvolvementCardProps {
   icon: string;
   title: string;
@@ -112,6 +114,9 @@ const GetInvolvedSection = () => {
           </div>
         </div>
       </div>
+
+      <DonationSection />
+
     </section>
   );
 };
