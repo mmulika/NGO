@@ -33,7 +33,11 @@ export default function DonationSection() {
           (window as any)[renderedFlag] = true;
         } catch (e) {
           // eslint-disable-next-line no-console
-          console.error("PayPal hosted buttons init error:", e);
+          try {
+            console.error("PayPal hosted buttons init error:", typeof e === 'object' ? JSON.stringify(e) : e);
+          } catch (serializeErr) {
+            console.error("PayPal hosted buttons init error (unserializable):", e);
+          }
         }
       }
     }
