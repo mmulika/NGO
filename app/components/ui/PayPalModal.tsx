@@ -132,6 +132,17 @@ export default function PayPalModal() {
       }
       document.body.style.overflow = prevOverflow;
       window.removeEventListener("keydown", handleKey);
+      // restore original console methods
+      try {
+        // @ts-ignore
+        console.error = origConsoleError;
+        // @ts-ignore
+        console.warn = origConsoleWarn;
+        // @ts-ignore
+        console.info = origConsoleInfo;
+      } catch (e) {
+        // ignore
+      }
     };
   }, [isOpen]);
 
