@@ -116,7 +116,7 @@ const Header = ({ className = "" }: HeaderProps) => {
             <button
               className="donate-btn"
               aria-label="Donate to TEEM Foundation"
-              onClick={() => scrollToSection("donate")}
+              onClick={() => window.dispatchEvent(new CustomEvent('open-paypal-modal'))}
             >
               Donate Now
             </button>
@@ -194,7 +194,7 @@ const Header = ({ className = "" }: HeaderProps) => {
               <button
                 className="mobile-donate-btn"
                 aria-label="Donate to TEEM Foundation"
-                onClick={() => scrollToSection("donate")}
+                onClick={() => window.dispatchEvent(new CustomEvent('open-paypal-modal'))}
               >
                 Donate Now
               </button>
