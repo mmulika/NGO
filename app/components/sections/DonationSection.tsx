@@ -11,6 +11,24 @@ export default function DonationSection() {
 
     const renderedFlag = `__paypal_hosted_buttons_rendered_${hostedButtonId}`;
 
+    // Filter out PayPal client-side noise about paylater ineligibility which is harmless
+    const originalConsoleError = console.error.bind(console);
+    const filteredConsoleError = (...args: any[]) => {
+      try {
+        const joined = args.map((a) => (typeof a === 'string' ? a : JSON.stringify(a))).join(' ');
+        if (joined && joined.includes('ncps_standalone_paylater_ineligible')) {
+          return; // swallow this specific noisy message
+        }
+      } catch (e) {
+        // if stringify fails, fall back to original
+      }
+      originalConsoleError(...args);
+    };
+    // Override console.error while component is mounted
+    // This is intentionally limited in scope and restored on unmount
+    // @ts-ignore
+    console.error = filteredConsoleError;
+
     function initPayPal() {
       // @ts-ignore
       if (typeof window === "undefined" || !(window as any).paypal) return;
@@ -69,6 +87,13 @@ export default function DonationSection() {
     return () => {
       if (existingScript && attachedListener) {
         existingScript.removeEventListener("load", initPayPal);
+      }
+      // restore original console.error
+      try {
+        // @ts-ignore
+        console.error = originalConsoleError;
+      } catch (e) {
+        // ignore
       }
       // no-op otherwise — we intentionally leave the script in place
     };
