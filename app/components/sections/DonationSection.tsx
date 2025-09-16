@@ -44,6 +44,10 @@ export default function DonationSection() {
             (window as any)[renderedFlag] = true;
             return;
           }
+          // If container is null, do not proceed
+          if (!container) {
+            return;
+          }
           // @ts-ignore
           (window as any).paypal.HostedButtons({ hostedButtonId }).render(`#${containerId}`);
           // mark as rendered to prevent duplicate listeners/renders
