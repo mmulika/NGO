@@ -1,0 +1,69 @@
+:root {
+  --paypal-backdrop: rgba(0, 0, 0, 0.6);
+  --paypal-bg: #ffffff;
+  --paypal-radius: 12px;
+  --paypal-max-width: 520px;
+  --paypal-padding: 20px;
+}
+
+.paypalModal {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+}
+
+.paypalModal.active {
+  display: flex;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--paypal-backdrop);
+  backdrop-filter: blur(4px);
+}
+
+.content {
+  position: relative;
+  background: var(--paypal-bg);
+  border-radius: var(--paypal-radius);
+  padding: var(--paypal-padding);
+  width: calc(100% - 40px);
+  max-width: var(--paypal-max-width);
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.2);
+  z-index: 1;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.body {
+  min-height: 64px;
+}
+
+.error {
+  color: #c53030;
+  margin-bottom: 12px;
+}
+
+@media (min-width: 640px) {
+  .content {
+    padding: 28px;
+  }
+}

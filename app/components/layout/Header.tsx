@@ -1,14 +1,23 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import styles from "./header-paypal.module.css";
 
 interface HeaderProps {
   className?: string;
 }
 
+const PAYPAL_SCRIPT_SRC =
+  "https://www.paypal.com/sdk/js?client-id=BAAomlFNxNPJgGtgdXPGZoKo7JizFMJ6wCJp6WLe8Pb9Z5ALLEURBDiteqr4JdvHSf0u2WuiLiOyRJn-Y0&components=hosted-buttons&disable-funding=venmo&currency=GBP";
+const HOSTED_BUTTON_ID = "M37GN5RNART8J";
+
 const Header = ({ className = "" }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showPaypal, setShowPaypal] = useState(false);
+  const [paypalLoading, setPaypalLoading] = useState(false);
+  const [paypalError, setPaypalError] = useState<string | null>(null);
+  const paypalRenderedRef = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +33,7 @@ const Header = ({ className = "" }: HeaderProps) => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setIsMobileMenuOpen(false);
+        setShowPaypal(false);
       }
     };
 
@@ -31,7 +41,8 @@ const Header = ({ className = "" }: HeaderProps) => {
       const target = event.target as Element;
       if (
         !target.closest(".mobile-menu") &&
-        !target.closest(".mobile-menu-button")
+        !target.closest(".mobile-menu-button") &&
+        !target.closest(`.${styles.paypalModal}`)
       ) {
         setIsMobileMenuOpen(false);
       }
@@ -63,6 +74,59 @@ const Header = ({ className = "" }: HeaderProps) => {
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const loadPaypalScript = (): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      if ((window as any).paypal) return resolve();
+
+      // Check if script already in the DOM
+      const existing = document.querySelector(`script[src\n*="${PAYPAL_SCRIPT_SRC}"]`);
+      if (existing && (window as any).paypal) return resolve();
+
+      const script = document.createElement("script");
+      script.src = PAYPAL_SCRIPT_SRC;
+      script.async = true;
+      script.crossOrigin = "anonymous";
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error("Failed to load PayPal SDK"));
+      document.head.appendChild(script);
+    });
+  };
+
+  const renderHostedButton = async () => {
+    try {
+      if (paypalRenderedRef.current) return;
+      if (!(window as any).paypal) {
+        throw new Error("PayPal SDK not available");
+      }
+      (window as any).paypal
+        .HostedButtons({ hostedButtonId: HOSTED_BUTTON_ID })
+        .render(`#paypal-container-${HOSTED_BUTTON_ID}`);
+      paypalRenderedRef.current = true;
+    } catch (err: any) {
+      setPaypalError(err?.message || "Unable to render PayPal button");
+    }
+  };
+
+  const openPaypal = async () => {
+    setShowPaypal(true);
+    setPaypalError(null);
+    setPaypalLoading(true);
+    try {
+      await loadPaypalScript();
+      await renderHostedButton();
+    } catch (err: any) {
+      setPaypalError(err?.message || "Failed to load PayPal");
+    } finally {
+      setPaypalLoading(false);
+    }
+  };
+
+  const handleDonateClick = () => openPaypal();
+
+  const closePaypal = () => {
+    setShowPaypal(false);
   };
 
   return (
@@ -116,6 +180,7 @@ const Header = ({ className = "" }: HeaderProps) => {
             <button
               className="donate-btn"
               aria-label="Donate to TEEM Foundation"
+              onClick={handleDonateClick}
             >
               Donate Now
             </button>
@@ -193,13 +258,44 @@ const Header = ({ className = "" }: HeaderProps) => {
               <button
                 className="mobile-donate-btn"
                 aria-label="Donate to TEEM Foundation"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  handleDonateClick();
+                }}
               >
                 Donate Now
               </button>
             </div>
           </div>
         </nav>
+      </div>
+
+      {/* PayPal Modal */}
+      <div
+        className={`${styles.paypalModal} ${showPaypal ? styles.active : ""}`}
+        role="dialog"
+        aria-modal={showPaypal}
+        aria-labelledby="paypal-modal-title"
+      >
+        <div className={styles.backdrop} onClick={closePaypal} />
+        <div className={styles.content}>
+          <div className={styles.header}>
+            <h3 id="paypal-modal-title">Donate via PayPal</h3>
+            <button
+              className={styles.closeBtn}
+              onClick={closePaypal}
+              aria-label="Close donation dialog"
+            >
+              ×
+            </button>
+          </div>
+
+          <div className={styles.body}>
+            {paypalLoading && <p>Loading PayPal...</p>}
+            {paypalError && <p className={styles.error}>Error: {paypalError}</p>}
+            <div id={`paypal-container-${HOSTED_BUTTON_ID}`} />
+          </div>
+        </div>
       </div>
     </>
   );
