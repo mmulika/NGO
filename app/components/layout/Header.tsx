@@ -72,7 +72,7 @@ const Header = ({ className = "" }: HeaderProps) => {
       >
         <div className="nav-container">
           <div className="logo-section">
-            <div className="logo-circle">T</div>
+            <div className="logo-circle"><img src="https://cdn.builder.io/api/v1/image/assets%2F374fd33642d546eab403369d5fd6f814%2F24648a59803943a9bc34fea2a7f150e1?format=webp&width=800" alt="TEEM Foundation logo" className="logo-image" loading="eager" /></div>
             <span className="logo-text">TEEM Foundation</span>
           </div>
 
@@ -155,7 +155,7 @@ const Header = ({ className = "" }: HeaderProps) => {
         >
           <div className="mobile-menu-header">
             <div className="logo-section">
-              <div className="logo-circle">T</div>
+              <div className="logo-circle"><img src="https://cdn.builder.io/api/v1/image/assets%2F374fd33642d546eab403369d5fd6f814%2F24648a59803943a9bc34fea2a7f150e1?format=webp&width=800" alt="TEEM Foundation logo" className="logo-image" loading="eager" /></div>
               <span className="logo-text">TEEM Foundation</span>
             </div>
           </div>
