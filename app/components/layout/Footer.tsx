@@ -49,7 +49,7 @@ const Footer = () => {
           <div className="footer-contact">
             <h4 className="footer-title">Contact Us</h4>
             <div className="contact-details">
-              <ContactItem label="Phone" value="+254 113 520004" />
+              <ContactItem label="Phone" value="+447305206253" />
               <ContactItem label="Email" value="admin@teemfoundation.org" />
               <div className="contact-item">
                 <span className="contact-label">Address:</span>
