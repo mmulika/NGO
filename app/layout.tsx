@@ -19,6 +19,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body suppressHydrationWarning={true}>
+        <a href="#main-content" className="skip-link">Skip to content</a>
         <PayPalModal />
         {children}
       </body>
