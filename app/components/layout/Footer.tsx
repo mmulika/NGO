@@ -98,6 +98,7 @@ const Footer = () => {
             <button
               className="footer-donate-btn"
               aria-label="Donate to TEEM Foundation today"
+              onClick={() => window.dispatchEvent(new CustomEvent('open-paypal-modal'))}
             >
               Donate Today
             </button>
