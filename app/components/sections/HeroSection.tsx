@@ -47,7 +47,9 @@ const HeroSection = () => {
     if ("vibrate" in navigator) {
       navigator.vibrate(50);
     }
-    console.log(`CTA clicked: ${type}`);
+    if (type === "support") {
+      window.dispatchEvent(new CustomEvent("open-paypal-modal"));
+    }
   };
 
   const scrollToSection = (sectionId: string) => {
@@ -91,7 +93,7 @@ const HeroSection = () => {
         <div className={`hero-container ${isLoaded ? "loaded" : ""}`}>
           <div className="hero-content">
             <h1 className="hero-title">
-              <span className="title-animated">{slogans[currentSlogan]}</span>
+              <span className="title-animated" aria-live="polite">{slogans[currentSlogan]}</span>
               <br />
               <span className="hero-highlight">Across Kenya</span>
             </h1>

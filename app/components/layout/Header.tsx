@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface HeaderProps {
   className?: string;
@@ -9,6 +9,8 @@ interface HeaderProps {
 const Header = ({ className = "" }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const mobileMenuRef = useRef<HTMLElement | null>(null);
+  const mobileMenuButtonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,11 +21,28 @@ const Header = ({ className = "" }: HeaderProps) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu when clicking outside or on escape
+  // Close mobile menu when clicking outside, on escape, and manage focus trap
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setIsMobileMenuOpen(false);
+      }
+      if (event.key === "Tab" && isMobileMenuOpen && mobileMenuRef.current) {
+        const focusable = mobileMenuRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        const active = document.activeElement as HTMLElement | null;
+        if (!active || !mobileMenuRef.current.contains(active)) return;
+        if (!event.shiftKey && active === last) {
+          event.preventDefault();
+          first.focus();
+        } else if (event.shiftKey && active === first) {
+          event.preventDefault();
+          last.focus();
+        }
       }
     };
 
@@ -42,8 +61,18 @@ const Header = ({ className = "" }: HeaderProps) => {
       document.addEventListener("mousedown", handleClickOutside);
       // Prevent body scroll when menu is open
       document.body.style.overflow = "hidden";
+      // Move focus into the menu
+      setTimeout(() => {
+        if (!mobileMenuRef.current) return;
+        const first = mobileMenuRef.current.querySelector<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        first?.focus();
+      }, 0);
     } else {
       document.body.style.overflow = "";
+      // Restore focus to the menu button when closing
+      mobileMenuButtonRef.current?.focus();
     }
 
     return () => {
@@ -72,7 +101,7 @@ const Header = ({ className = "" }: HeaderProps) => {
       >
         <div className="nav-container">
           <div className="logo-section">
-            <div className="logo-circle"><img src="https://cdn.builder.io/api/v1/image/assets%2F374fd33642d546eab403369d5fd6f814%2F24648a59803943a9bc34fea2a7f150e1?format=webp&width=800" alt="TEEM Foundation logo" className="logo-image" loading="eager" /></div>
+            <div className="logo-circle"><img src="https://cdn.builder.io/api/v1/image/assets%2F374fd33642d546eab403369d5fd6f814%2F24648a59803943a9bc34fea2a7f150e1?format=webp&width=800" alt="TEEM Foundation logo" className="logo-image" loading="eager" width="40" height="40" /></div>
             <span className="logo-text">TEEM Foundation</span>
           </div>
 
@@ -131,10 +160,13 @@ const Header = ({ className = "" }: HeaderProps) => {
 
           {/* Mobile Menu Button */}
           <button
+            ref={mobileMenuButtonRef}
             className={`mobile-menu-button ${isMobileMenuOpen ? "active" : ""}`}
             onClick={toggleMobileMenu}
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileMenuOpen}
+            aria-controls="primary-navigation"
+            aria-haspopup="true"
           >
             <span className="hamburger-line"></span>
             <span className="hamburger-line"></span>
@@ -149,13 +181,16 @@ const Header = ({ className = "" }: HeaderProps) => {
         aria-hidden={!isMobileMenuOpen}
       >
         <nav
+          ref={mobileMenuRef}
+          id="primary-navigation"
           className="mobile-menu"
           role="navigation"
           aria-label="Mobile navigation"
+          tabIndex={-1}
         >
           <div className="mobile-menu-header">
             <div className="logo-section">
-              <div className="logo-circle"><img src="https://cdn.builder.io/api/v1/image/assets%2F374fd33642d546eab403369d5fd6f814%2F24648a59803943a9bc34fea2a7f150e1?format=webp&width=800" alt="TEEM Foundation logo" className="logo-image" loading="eager" /></div>
+              <div className="logo-circle"><img src="https://cdn.builder.io/api/v1/image/assets%2F374fd33642d546eab403369d5fd6f814%2F24648a59803943a9bc34fea2a7f150e1?format=webp&width=800" alt="TEEM Foundation logo" className="logo-image" loading="lazy" width="40" height="40" /></div>
               <span className="logo-text">TEEM Foundation</span>
             </div>
           </div>
