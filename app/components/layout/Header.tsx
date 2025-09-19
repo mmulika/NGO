@@ -86,6 +86,13 @@ const Header = ({ className = "" }: HeaderProps) => {
               About
             </button>
             <button
+              onClick={() => scrollToSection("gallery")}
+              className="nav-link"
+              aria-label="Navigate to Gallery section"
+            >
+              Gallery
+            </button>
+            <button
               onClick={() => scrollToSection("our-work")}
               className="nav-link"
               aria-label="Navigate to Our Work section"
@@ -160,6 +167,13 @@ const Header = ({ className = "" }: HeaderProps) => {
               aria-label="Navigate to About section"
             >
               About
+            </button>
+            <button
+              onClick={() => scrollToSection("gallery")}
+              className="mobile-nav-link"
+              aria-label="Navigate to Gallery section"
+            >
+              Gallery
             </button>
             <button
               onClick={() => scrollToSection("our-work")}
