@@ -3049,20 +3049,12 @@ img {
   }
 }
 
-/* Medium mobile screens optimization */
-@media (min-width: 375px) and (max-width: 480px) {
-  .hero-title {
-    font-size: 2.25rem;
-  }
-
-  .hero-description {
-    font-size: 1.05rem;
-  }
-
-  .work-grid,
-  .involvement-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
+/* Logo image inside circle */
+.logo-circle .logo-image {
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  object-fit: contain;
+  display: block;
 }
 
