@@ -1,3 +1,5 @@
+"use client";
+
 interface ContactItemProps {
   label: string;
   value: string;
