@@ -203,7 +203,7 @@ h6 {
 .logo-circle {
   width: 36px;
   height: 36px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: transparent;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -471,8 +471,24 @@ h6 {
 .hero-background {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  background: transparent;
   contain: layout style paint;
+  overflow: hidden;
+}
+.hero-background::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(800px 400px at 10% 20%, rgba(255,255,255,0.06), transparent 12%),
+    radial-gradient(600px 300px at 90% 80%, rgba(255,240,230,0.04), transparent 12%),
+    linear-gradient(135deg, #4c6ef5 0%, #9b5de5 35%, #f093fb 100%);
+  background-blend-mode: overlay, screen, normal;
+  opacity: 1;
+  transform: scale(1.02);
+  filter: saturate(1.05);
+  z-index: 0;
+  will-change: transform, opacity;
 }
 
 .hero-image-wrapper {
@@ -554,24 +570,29 @@ h6 {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.3);
-  animation: fadeIn 1s ease-out;
+  background: linear-gradient(180deg, rgba(8,12,33,0.18) 0%, rgba(8,12,33,0.28) 60%);
+  -webkit-backdrop-filter: blur(6px) saturate(1.05);
+          backdrop-filter: blur(6px) saturate(1.05);
+  animation: fadeIn 0.9s ease-out;
+  z-index: 1;
 }
 
 .hero-particles {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
 }
-
 .particle {
   position: absolute;
-  width: 4px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.6);
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.35) 40%, transparent 60%);
   border-radius: 50%;
   animation: float infinite ease-in-out;
+  filter: blur(0.2px);
+  opacity: 0.9;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
 }
 
 /* Hide particles on mobile for performance */
@@ -3064,5 +3085,14 @@ img {
     grid-template-columns: 1fr;
     gap: 24px;
   }
+}
+
+/* Logo image inside circle */
+.logo-circle .logo-image {
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  object-fit: contain;
+  display: block;
 }
 
