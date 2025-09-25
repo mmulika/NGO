@@ -29,9 +29,14 @@ const HeroSection = () => {
   const slogans = ["Empowering Youth", "Building Futures", "Creating Change"];
 
   const heroImages = [
-    "https://cdn.builder.io/api/v1/image/assets/374fd33642d546eab403369d5fd6f814/4569d8b9154a4ef386786fdd17888915?format=webp&width=1600",
-    "https://cdn.builder.io/api/v1/image/assets/374fd33642d546eab403369d5fd6f814/538cf24bfcdc43d8be4042132ae49e3b?format=webp&width=1600",
-    "https://cdn.builder.io/api/v1/image/assets/374fd33642d546eab403369d5fd6f814/62a428237a4d40458f701547453dfc86?format=webp&width=1600",
+    "https://cdn.builder.io/api/v1/image/assets%2F374fd33642d546eab403369d5fd6f814%2Fc30b4ca4cb584cbeba336aece29fb415?format=webp&width=800",
+    "https://cdn.builder.io/api/v1/image/assets%2F374fd33642d546eab403369d5fd6f814%2F1e2a95a3a47940b2be9823dfd08193f6?format=webp&width=800",
+    "https://cdn.builder.io/api/v1/image/assets%2F374fd33642d546eab403369d5fd6f814%2F01cecac51fff4edf8c5811ec144f756f?format=webp&width=800",
+    "https://cdn.builder.io/api/v1/image/assets%2F374fd33642d546eab403369d5fd6f814%2Fef08c192ffb3498a819f97a33426bb3d?format=webp&width=800",
+    "https://cdn.builder.io/api/v1/image/assets%2F374fd33642d546eab403369d5fd6f814%2F9d3270146e3f42e4999b6bbbb45967e9?format=webp&width=800",
+    "https://cdn.builder.io/api/v1/image/assets%2F374fd33642d546eab403369d5fd6f814%2F4ea7e8517a6b4247944087a40f170481?format=webp&width=800",
+    "https://cdn.builder.io/api/v1/image/assets%2F374fd33642d546eab403369d5fd6f814%2Fb16acccd56b24f7281c6d2dc4931324e?format=webp&width=800",
+    "https://cdn.builder.io/api/v1/image/assets%2F374fd33642d546eab403369d5fd6f814%2F67113984d71d44cc9a88fde4e01e798f?format=webp&width=800",
   ];
   const [activeImage, setActiveImage] = useState(0);
   const [loadedImages, setLoadedImages] = useState<boolean[]>(
