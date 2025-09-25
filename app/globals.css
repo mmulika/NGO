@@ -480,9 +480,9 @@ h6 {
     radial-gradient(600px 300px at 90% 80%, rgba(255,240,230,0.04), transparent 12%),
     linear-gradient(135deg, #4c6ef5 0%, #9b5de5 35%, #f093fb 100%);
   background-blend-mode: overlay, screen, normal;
-  opacity: 1;
+  opacity: 0.5;
   transform: scale(1.02);
-  filter: saturate(1.05);
+  filter: saturate(1.02) contrast(0.98);
   z-index: 0;
   will-change: transform, opacity;
 }
@@ -566,8 +566,8 @@ h6 {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(8,12,33,0.18) 0%, rgba(8,12,33,0.28) 60%);
-  backdrop-filter: blur(6px) saturate(1.05);
+  background: linear-gradient(180deg, rgba(8,12,33,0.06) 0%, rgba(8,12,33,0.12) 60%);
+  backdrop-filter: blur(4px) saturate(1.02);
   animation: fadeIn 0.9s ease-out;
   z-index: 1;
 }
