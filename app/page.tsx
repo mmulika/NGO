@@ -77,7 +77,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <main className="main-container">
+      <main id="main-content" className="main-container" tabIndex={-1}>
         <Header />
         <HeroSection />
         <ImpactBanner />
