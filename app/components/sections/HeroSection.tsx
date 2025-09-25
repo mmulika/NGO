@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 interface StatItemProps {
   number: string;
@@ -27,6 +28,16 @@ const HeroSection = () => {
 
   const slogans = ["Empowering Youth", "Building Futures", "Creating Change"];
 
+  const heroImages = [
+    "https://cdn.builder.io/api/v1/image/assets/374fd33642d546eab403369d5fd6f814/4569d8b9154a4ef386786fdd17888915?format=webp&width=1600",
+    "https://cdn.builder.io/api/v1/image/assets/374fd33642d546eab403369d5fd6f814/538cf24bfcdc43d8be4042132ae49e3b?format=webp&width=1600",
+    "https://cdn.builder.io/api/v1/image/assets/374fd33642d546eab403369d5fd6f814/62a428237a4d40458f701547453dfc86?format=webp&width=1600",
+  ];
+  const [activeImage, setActiveImage] = useState(0);
+  const [loadedImages, setLoadedImages] = useState<boolean[]>(
+    Array(heroImages.length).fill(false)
+  );
+
   useEffect(() => {
     setIsLoaded(true);
   }, []);
@@ -42,6 +53,18 @@ const HeroSection = () => {
       clearInterval(sloganInterval);
     };
   }, [isPaused]);
+
+  useEffect(() => {
+    const imageInterval = setInterval(() => {
+      if (!isPaused) {
+        setActiveImage((prev) => (prev + 1) % heroImages.length);
+      }
+    }, 6000);
+
+    return () => {
+      clearInterval(imageInterval);
+    };
+  }, [isPaused, heroImages.length]);
 
   const handleCTAClick = (type: "support" | "learn") => {
     if ("vibrate" in navigator) {
@@ -70,6 +93,31 @@ const HeroSection = () => {
       onMouseLeave={() => setIsPaused(false)}
     >
       <div className="hero-background">
+        {heroImages.map((src, index) => (
+          <div
+            key={index}
+            className={`hero-image-wrapper ${activeImage === index ? "active" : ""}`}
+            aria-hidden="true"
+          >
+            <div className="hero-image-skeleton" />
+            <Image
+              src={src}
+              alt=""
+              fill
+              priority={index === 0}
+              sizes="100vw"
+              className={`hero-image ${loadedImages[index] ? "loaded" : ""}`}
+              onLoad={() =>
+                setLoadedImages((prev) => {
+                  const next = [...prev];
+                  next[index] = true;
+                  return next;
+                })
+              }
+            />
+          </div>
+        ))}
+
         <div className="hero-overlay" aria-hidden="true"></div>
         <div className="hero-particles" aria-hidden="true">
           {Array.from({ length: 6 }).map((_, i) => {
@@ -126,6 +174,19 @@ const HeroSection = () => {
               <StatItem number="4" label="Key Programs" delay={600} />
             </div>
           </div>
+        </div>
+
+        <div className="hero-image-nav" aria-label="Background image navigation">
+          {heroImages.map((_, i) => (
+            <button
+              key={i}
+              className={`image-nav-dot ${activeImage === i ? "active" : ""}`}
+              onClick={() => setActiveImage(i)}
+              aria-label={`Show background image ${i + 1}`}
+            >
+              {activeImage === i && <span className="progress-ring" aria-hidden="true" />}
+            </button>
+          ))}
         </div>
 
         <div className="scroll-indicator" aria-hidden="true">
