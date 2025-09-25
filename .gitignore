@@ -1,0 +1,6 @@
+
+# Ignore node_modules and similar module folders
+node_modules/
+modules/
+*.log
+dist/
