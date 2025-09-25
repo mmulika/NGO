@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 interface StatItemProps {
   number: string;
@@ -27,6 +28,21 @@ const HeroSection = () => {
 
   const slogans = ["Empowering Youth", "Building Futures", "Creating Change"];
 
+  const heroImages = [
+    "https://cdn.builder.io/api/v1/image/assets%2F374fd33642d546eab403369d5fd6f814%2Fc30b4ca4cb584cbeba336aece29fb415?format=webp&width=800",
+    "https://cdn.builder.io/api/v1/image/assets%2F374fd33642d546eab403369d5fd6f814%2F1e2a95a3a47940b2be9823dfd08193f6?format=webp&width=800",
+    "https://cdn.builder.io/api/v1/image/assets%2F374fd33642d546eab403369d5fd6f814%2F01cecac51fff4edf8c5811ec144f756f?format=webp&width=800",
+    "https://cdn.builder.io/api/v1/image/assets%2F374fd33642d546eab403369d5fd6f814%2Fef08c192ffb3498a819f97a33426bb3d?format=webp&width=800",
+    "https://cdn.builder.io/api/v1/image/assets%2F374fd33642d546eab403369d5fd6f814%2F9d3270146e3f42e4999b6bbbb45967e9?format=webp&width=800",
+    "https://cdn.builder.io/api/v1/image/assets%2F374fd33642d546eab403369d5fd6f814%2F4ea7e8517a6b4247944087a40f170481?format=webp&width=800",
+    "https://cdn.builder.io/api/v1/image/assets%2F374fd33642d546eab403369d5fd6f814%2Fb16acccd56b24f7281c6d2dc4931324e?format=webp&width=800",
+    "https://cdn.builder.io/api/v1/image/assets%2F374fd33642d546eab403369d5fd6f814%2F67113984d71d44cc9a88fde4e01e798f?format=webp&width=800",
+  ];
+  const [activeImage, setActiveImage] = useState(0);
+  const [loadedImages, setLoadedImages] = useState<boolean[]>(
+    Array(heroImages.length).fill(false)
+  );
+
   useEffect(() => {
     setIsLoaded(true);
   }, []);
@@ -42,6 +58,18 @@ const HeroSection = () => {
       clearInterval(sloganInterval);
     };
   }, [isPaused]);
+
+  useEffect(() => {
+    const imageInterval = setInterval(() => {
+      if (!isPaused) {
+        setActiveImage((prev) => (prev + 1) % heroImages.length);
+      }
+    }, 6000);
+
+    return () => {
+      clearInterval(imageInterval);
+    };
+  }, [isPaused, heroImages.length]);
 
   const handleCTAClick = (type: "support" | "learn") => {
     if ("vibrate" in navigator) {
@@ -70,6 +98,31 @@ const HeroSection = () => {
       onMouseLeave={() => setIsPaused(false)}
     >
       <div className="hero-background">
+        {heroImages.map((src, index) => (
+          <div
+            key={index}
+            className={`hero-image-wrapper ${activeImage === index ? "active" : ""}`}
+            aria-hidden="true"
+          >
+            <div className="hero-image-skeleton" />
+            <Image
+              src={src}
+              alt=""
+              fill
+              priority={index === 0}
+              sizes="100vw"
+              className={`hero-image ${loadedImages[index] ? "loaded" : ""}`}
+              onLoad={() =>
+                setLoadedImages((prev) => {
+                  const next = [...prev];
+                  next[index] = true;
+                  return next;
+                })
+              }
+            />
+          </div>
+        ))}
+
         <div className="hero-overlay" aria-hidden="true"></div>
         <div className="hero-particles" aria-hidden="true">
           {Array.from({ length: 6 }).map((_, i) => {
@@ -126,6 +179,19 @@ const HeroSection = () => {
               <StatItem number="4" label="Key Programs" delay={600} />
             </div>
           </div>
+        </div>
+
+        <div className="hero-image-nav" aria-label="Background image navigation">
+          {heroImages.map((_, i) => (
+            <button
+              key={i}
+              className={`image-nav-dot ${activeImage === i ? "active" : ""}`}
+              onClick={() => setActiveImage(i)}
+              aria-label={`Show background image ${i + 1}`}
+            >
+              {activeImage === i && <span className="progress-ring" aria-hidden="true" />}
+            </button>
+          ))}
         </div>
 
         <div className="scroll-indicator" aria-hidden="true">
